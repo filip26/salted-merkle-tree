@@ -25,7 +25,7 @@ These properties provide a deterministic and efficient basis for privacy-preserv
 
 ## Datasets
 
-Any dataset that supports a bidirectional mapping between its native representation and an ordered sequence of canonicalized claims can be used for selective disclosure using a salted Merkle tree.
+Any dataset that maps unidirectionally from its native representation to an ordered sequence of canonicalized claims supports selective disclosure via a Salted Merkle tree.
 
 A claim is an atomic, canonicalized unit of information derived from a dataset that can be independently represented, committed to, and selectively disclosed. Each claim is encoded in a deterministic canonical form so that equivalent claims produce identical representations.
 
