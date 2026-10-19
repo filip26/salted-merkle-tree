@@ -143,10 +143,11 @@ The `ceil`, `floor`, and `log2` operations can be implemented using integer arit
 | Operation                    | Integer/bitwise equivalent                |
 | ---------------------------- | ----------------------------------------- |
 | `ceil(log2(n))`, for `n > 1` | `bit_length(n - 1)`                       |
-| `floor(i / 2)`               | `i >>> 1` in Java                         |
+| `floor(n / 2)`               | `n >>> 1` in Java                         |
 | `ceil(n / 2)`                | `(n + 1) >>> 1` for non-negative integers |
 | `2 ^ n`                      | `1 << n`                                  |
 | `2 * ceil(n / 2)`            | `n + (n & 1)`                             |
+| `n * 2`                      | `n << 1`                                  | 
 
 Here, `bit_length(x)` is the number of bits in the binary representation of `x`. e.g. in Java, it can be computed as `32 - Integer.numberOfLeadingZeros(x)` for positive `int` values.
 
