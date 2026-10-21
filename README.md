@@ -182,7 +182,7 @@ Let `m` be the number of disclosed claims and `p` the number of verification pat
 
 These bounds assume fixed-size hash outputs and constant-time hash operations.
 
-### Leaf Hashes Computation and Distribution
+### Leaf Hashes Computation
 
 **Input**: An ordered sequence of `n` claims, their salts, a mapping from claim positions to leaf positions, and optional sorted indices of claims to omit.
 
@@ -204,7 +204,7 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 - Time Complexity: `O(n)`, as each claim is processed once and at most one padding leaf is computed.
 - Space Complexity: `O(n)` for the output buffer, including the optional padding leaf.
 
-### Salt Generation, Leaf Mapping, and Hash Computation
+### Salt Generation, Claims Distribution, and Hash Computation
 
 Salt Generation. Generate salts for all claims, ensuring the total number of salts is even by adding one additional entry if the number of claims is odd. Each salt is derived as `HMAC(K, 0x10 || uint32_be(i))`, where `i` is the origin claim index.
 
