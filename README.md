@@ -124,7 +124,7 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 
 **Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`, and a selected leaf hashes are not set. Only not selected leaf hashes are computed and present.
 
-**Output:** The verification path hashes in verification order.
+**Output:** An ordered sequence of verification path hashes.
 
 1. Compute the tree depth as `depth = ceil(log2(n))`.
 2. Set the current `level_size` to `n`.
@@ -187,19 +187,6 @@ Let `m` be the number of disclosed claims and `p` the number of verification pat
 - Space Complexity: `O(m)`, The algorithm uses a mapping array and a buffer proportional to the number of disclosed claims, reusing both arrays to store successive tree levels.
 
 These bounds assume fixed-size hash outputs and constant-time hash operations.
-
-### Leaf Hashes Computation and Distribution
-
-**Input:** An ordered sequence of `n > 1` claims, target leaf hash array size `n <= m` and `m % 2 == 0` , and HMAC secret key `K`.
-
-**Output:** The ordered sequence of leaf hashes where the total size is even number `m`.
-
-1. Initialize an empty array `r` of size `m`
-2. For each `index` from `0` to `m`:
-   1. Compute `HMAC(K, index)` and store the result in the array at `index`
-   2. 
-4. Hash each leaf as `H(0x00 || salt || data)`, storing the resulting hashes in a single array.
-...
 
 ### Leaf Hashes Computation and Distribution
 
