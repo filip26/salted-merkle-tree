@@ -134,7 +134,8 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
    3. For each pair where `i` is the index of the left child:
       1. If the left child is not set and the right child is present, append the right child to the verification path and unset the parent entry at index `floor(i / 2)`.
       2. If the right child is not set and the left child is present, append the left child to the verification path and unset the parent entry at index `floor(i / 2)`.
-      3. Otherwise, compute the parent hash as `H(0x01 || left || right)` and store it at index `floor(i / 2)`.
+      3. If the left child is present and the right child is present, compute the parent hash as `H(0x01 || left || right)` and store it at index `floor(i / 2)`.
+      4. Otherwise, unset the parent entry at index `floor(i / 2)`.
    4. Update the current `level_size` to `ceil(level_size / 2)`.
 4. Return the verification path hashes.
 
