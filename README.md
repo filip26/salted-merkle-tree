@@ -76,8 +76,7 @@ An entity acting as a cryptographic prover in a selective disclosure protocol th
 An entity that acts as a verifier in a selective disclosure protocol, responsible for authenticating the subset of claims revealed by the Holder. The Verifier reconstructs the tree root from the disclosed claims, their respective salts, slot indices, and verification path, and cryptographically validates the issuer's digital signature over the reconstructed root using the issuer's public key.
 
 - Flattens the relevant dataset into an ordered list of claims.
-- Hashes the disclosed claims and assigns them to their slots using the provided salts and slot indices.
-- Reconstructs the root from the disclosed claims and verification path.
+- Reconstructs the root from the disclosed claims, salts, indices, and verification path.
 - Verifies the issuer's signature on the reconstructed root using the issuer's public key.
 - Accepts the disclosed claims only if signature verification.
 
