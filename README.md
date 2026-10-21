@@ -7,7 +7,7 @@ A Salted Merkle tree is a cryptographic commitment structure. Selective disclosu
 
 The tree is binary and balanced, using unique padding hashes to handle missing siblings without explicitly constructing or storing all padding nodes. This reduces the space and computational overhead associated with materializing a fully padded tree. Each leaf hash is salted to prevent offline dictionary attacks against the underlying claims.
 
-For `n` leaves, root computation takes `O(n)` time and `O(n)` space, while the tree depth is `O(log n)`. Verification path generation takes `O(n)` time and `O(n)` space. The size of an individual verification path is `O(log n)`. When multiple leaves are disclosed, their verification paths can share common nodes, reducing the total proof size.
+For `n` leaves, root computation takes `O(n)` time and `O(n)` space, while the tree depth is `O(log n)`. Verification path generation takes `O(n)` time and `O(n)` space. An individual verification path contains `O(log n)` hashes. For `m` disclosed leaves, root reconstruction takes `O(m log m + p)` time, where `p` is the number of hashes in the verification path, and `O(m)` space, excluding the input claims, salts, indices, and path. When multiple leaves are disclosed, their verification paths can share common nodes, reducing the total proof size.
 
 ## Design Objectives
 
