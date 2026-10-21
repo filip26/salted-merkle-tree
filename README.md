@@ -206,15 +206,15 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 
 ### Salt Generation, Leaf Mapping, and Hash Computation
 
-Salt Generation. Generate salts for all claims, ensuring the total number of salts is even by adding one additional entry if the number of claims is odd. Each salt is derived as `HMAC(K, 0x10 || uint32_be(i))`, where `i` is the entry index.
+Salt Generation. Generate salts for all claims, ensuring the total number of salts is even by adding one additional entry if the number of claims is odd. Each salt is derived as `HMAC(K, 0x10 || uint32_be(i))`, where `i` is the origin claim index.
 
-Leaf Mapping. Initialize the mapping with the original leaf indices and sort them by their corresponding salts in ascending lexicographic order. The resulting mapping assigns each original leaf index to its position in the tree.
+Claims Distribution. Initialize the mapping with the original claim indices and sort them by their corresponding salts in ascending lexicographic order. The resulting mapping assigns each original claim index to its leaf slot in the tree.
 
-Leaf Hash Computation. Compute each leaf hash as `H(0x00 || salt || data)`. For a padding leaf, omit the data component, yielding `H(0x00 || salt)`.
+Leaf Hash Computation. Compute each leaf hash as `H(0x00 || salt || claim)`. For a padding leaf, omit the data component, yielding `H(0x00 || salt)`.
 
 Internal Node Hash Computation. Compute each parent hash as `H(0x01 || left || right)`, preserving the order of the left and right child hashes.
 
-Level Padding. For a missing sibling at tree level `level > 0`, derive the padding hash as `H(0x02 || HMAC(K, 0x11 || uint32_be(level)))`. The level-specific value allows incomplete tree levels to be handled without explicitly materializing all padding nodes.
+Level Padding. For a missing sibling at tree `level > 0`, derive the padding hash as `H(0x02 || HMAC(K, 0x11 || uint32_be(level)))`. The level-specific padding allows incomplete tree levels to be handled without explicitly materializing all padding nodes.
 
 ## Appendix
 
