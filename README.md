@@ -95,9 +95,9 @@ The algorithms enable the issuer to commit to a dataset, the disclosing party to
 
 ### Root Generation
 
-**Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`.
+**Input**: An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`.
 
-**Output:** The Merkle root.
+**Output**: The Merkle root.
 
 1. Compute the tree depth as `depth = ceil(log2(n))`.
 2. Set the current `level_size` to `n`.
@@ -122,9 +122,9 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 
 ### Verification Path Generation
 
-**Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`, and a selected leaf hashes are not set. Only not selected leaf hashes are computed and present.
+**Input**: An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`, and a selected leaf hashes are not set. Only not selected leaf hashes are computed and present.
 
-**Output:** An ordered sequence of verification path hashes.
+**Output**: An ordered sequence of verification path hashes.
 
 1. Compute the tree depth as `depth = ceil(log2(n))`.
 2. Set the current `level_size` to `n`.
@@ -152,15 +152,9 @@ These bounds assume fixed-size hash outputs, constant-time hash operations.
 
 ### Root Reconstruction
 
-Input: A sequence of `m` disclosed claims, their corresponding salts and original leaf indices, and a verification path of sibling hashes.
+**Input**: A sequence of disclosed claims, their corresponding salts and original leaf indices, and a verification path hashes in verification order.
 
-Output: The reconstructed Merkle root.
-
-### Root Reconstruction
-
-Input: Disclosed claims, their corresponding salts and original leaf indices, and the verification path hashes in verification order.
-
-Output: The reconstructed Merkle root.
+**Output**: The reconstructed Merkle root.
 
 1. Initialize `mapping` with the indices of the disclosed claims and sort it by ascending original leaf index.
 2. Initialize `buffer` to hold the disclosed leaf hashes and set `level_size` to the number of disclosed claims.
@@ -202,6 +196,8 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 4. Return the array of leaf hashes.
 
 > Note: A unique, cryptographically random salt prevents attackers from efficiently guessing the contents of undisclosed leaves by precomputing hashes of likely values and comparing them against published hashes. This protection relies on keeping the salt secret for undisclosed leaves. The issuer and disclosing party can share a secret seed and deterministically derive each leaf's salt from its index, avoiding the need to store or transmit individual salts. When a leaf is disclosed, its salt must be revealed alongside the data so verifiers can recompute its hash.
+
+> Note: Distributing leaves according to positions derived from HMAC of their original indices using a secret key obscures the relationship between original claim indices and their positions in the Merkle tree, making it harder to infer the original ordering of claims or identify undisclosed claims by their tree positions.
 
 #### Complexity
 
