@@ -91,7 +91,7 @@ The selective disclosure process involves three core algorithms, used by the iss
 
 The algorithms enable the issuer to commit to a dataset, the disclosing party to reveal selected leaves, and the verifier to check them against the original commitment.
 
-### Root Computation
+### Root Generation
 
 **Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`.
 
