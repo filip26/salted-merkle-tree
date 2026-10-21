@@ -53,6 +53,10 @@ An entity that instantiates a cryptographic commitment scheme over a dataset by 
   - The secret key `K` and leaves array size `M`.
   - The dataset.
 
+> Node: The HMAC secret key `K` is never shared with the verifier; it is used to hide the original claims distribution and to add entropy to the leaf hashes, preventing dictionary attacks and brute-force attacks.
+> 
+> The issuer uses its asymmetric key pair and signature scheme to sign the commitment. The issuer's private key must remain strictly uncompromised and unshared.
+
 ### Holder (disclosing party)
 
 An entity acting as a cryptographic prover in a selective disclosure protocol that receives the dataset, HMAC secret key `K`, array dimension `M`, and signed Merkle root from the Issuer. The Holder is responsible for serializing the dataset into a canonical sequence, mapping claims to a sparse vector of dimension `M` via the keyed slot-distribution function, computing cryptographic verification path for a subset of targeted claims, and transmitting the proofs and public parameters to the Verifier.
