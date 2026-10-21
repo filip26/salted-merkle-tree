@@ -119,6 +119,27 @@ Let `n` be the number of leaves:
 
 These bounds assume fixed-size hash outputs and constant-time hash operations.
 
+
+### Verification Path Generation
+
+**Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`, and a selected leaf hash is not set.
+
+**Output:** The verification path hashes in verification order.
+
+1. Compute the tree depth as `depth = ceil(log2(n))`.
+2. Set the current `level_size` to `n`.
+3. For each `level` from `0` to `depth - 1`:
+   1. Process the current level in adjacent pairs, from left to right, using `level_size`.
+   2. If the final node has no right sibling, use the depth-based padding hash for the current `level` as its right sibling and increment the current `level_size` to account for the padded node.
+   3. For each pair where `i` is the index of the left child:
+      1. If the left child is not set and the right child is present, append the right child to the verification path and unset the parent entry at index `floor(i / 2)`.
+      2. If the right child is not set and the left child is present, append the left child to the verification path and unset the parent entry at index `floor(i / 2)`.
+      3. Otherwise, compute the parent hash as `H(0x01 || left || right)` and store it at index `floor(i / 2)`.
+   4. Update the current `level_size` to `ceil(level_size / 2)`.
+4. Return the verification path hashes.
+
+The algorithm reuses a single buffer to store successive tree levels, avoiding the need to allocate a separate array for each level.
+
 ### Leaf Hashes Computation and Distribution
 
 **Input:** An ordered sequence of `n > 1` claims, target leaf hash array size `n <= m` and `m % 2 == 0` , and HMAC secret key `K`.
