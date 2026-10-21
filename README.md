@@ -44,7 +44,7 @@ Conceptual separation among the Issuer, Holder, and Verifier isolates trust doma
 An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension M via a keyed pseudorandom slot-distribution function, computing a salted Merkle tree root, and generating a digital signature over the root. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
 
 - Flattens the dataset into an ordered list of claims.
-- Distributes the claims across an array of size `M` using the secret-keyed HMAC slot-distribution algorithm.
+- Distributes the claims across an array of size `M` using the secret-keyed HMAC slot-distribution algorithm. Generates HMAC secret key `K`.
 - Generates the root.
 - Signs the root using the issuer's private key.
 - Shares the following with the holder:
