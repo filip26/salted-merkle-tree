@@ -218,6 +218,10 @@ Level Padding. For a missing sibling at tree `level > 0`, derive the padding has
 
 ## Appendix
 
+### JSON Dataset
+
+### Example
+
 ### Implementation Note
 
 The `ceil`, `floor`, and `log2` operations can be implemented using integer arithmetic and bitwise operations, avoiding floating-point calculations and reducing computational overhead.
@@ -232,7 +236,5 @@ The `ceil`, `floor`, and `log2` operations can be implemented using integer arit
 | `n * 2`                      | `n << 1`                                  | 
 
 Here, `bit_length(x)` is the number of bits in the binary representation of `x`. e.g. in Java, it can be computed as `32 - Integer.numberOfLeadingZeros(x)` for positive `int` values.
-
-### JSON Dataset
 
 ### Implementations
