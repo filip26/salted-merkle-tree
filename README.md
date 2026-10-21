@@ -216,6 +216,8 @@ Internal Node Hash Computation. Compute each parent hash as `H(0x01 || left || r
 
 Level Padding. For a missing sibling at tree `level > 0`, derive the padding hash as `H(0x02 || HMAC(K, 0x11 || uint32_be(level)))`. The level-specific padding allows incomplete tree levels to be handled without explicitly materializing all padding nodes.
 
+> Note: Domain separation prefixes for salt generation, leaf hashing, internal node computation, and level padding ensure that inputs from different structural contexts remain strictly separated, preventing hash collisions, type-confusion attacks, or second-preimage vulnerabilities between different node types and derivation steps.
+
 ## Appendix
 
 ### JSON Dataset
