@@ -195,10 +195,6 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 3. If `n` is odd, compute the padding leaf as `H(PREFIX_LEAF || salts[n])` and store it at the position specified by the mapping for `n`.
 4. Return the array of leaf hashes.
 
-> Note: A unique, cryptographically random salt prevents attackers from efficiently guessing the contents of undisclosed leaves by precomputing hashes of likely values and comparing them against published hashes. This protection relies on keeping the salt secret for undisclosed leaves. The issuer and disclosing party can share a secret seed and deterministically derive each leaf's salt from its index, avoiding the need to store or transmit individual salts. When a leaf is disclosed, its salt must be revealed alongside the data so verifiers can recompute its hash.
-
-> Note: Distributing claims according to positions derived from HMAC of their original indices using a secret key obscures the relationship between original claim indices and their positions in the Merkle tree, making it harder to infer the original ordering of claims or identify undisclosed claims by their tree positions.
-
 #### Complexity
 
 - Time Complexity: `O(n)`, as each claim is processed once and at most one padding leaf is computed.
@@ -208,7 +204,11 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 
 Salt Generation. Generate salts for all claims, ensuring the total number of salts is even by adding one additional entry if the number of claims is odd. Each salt is derived as `HMAC(K, 0x10 || uint32_be(i))`, where `i` is the origin claim index.
 
+> Note: A unique, cryptographically random salt prevents attackers from efficiently guessing the contents of undisclosed leaves by precomputing hashes of likely values and comparing them against published hashes. This protection relies on keeping the salt secret for undisclosed leaves. The issuer and disclosing party can share a secret seed and deterministically derive each leaf's salt from its index, avoiding the need to store or transmit individual salts. When a leaf is disclosed, its salt must be revealed alongside the data so verifiers can recompute its hash.
+
 Claims Distribution. Initialize the mapping with the original claim indices and sort them by their corresponding salts in ascending lexicographic order. The resulting mapping assigns each original claim index to its leaf slot in the tree.
+
+> Note: Distributing claims according to positions derived from HMAC of their original indices using a secret key obscures the relationship between original claim indices and their positions in the Merkle tree, making it harder to infer the original ordering of claims or identify undisclosed claims by their tree positions.
 
 Leaf Hash Computation. Compute each leaf hash as `H(0x00 || salt || claim)`. For a padding leaf, omit the data component, yielding `H(0x00 || salt)`.
 
