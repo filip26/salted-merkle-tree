@@ -94,16 +94,17 @@ The algorithms enable the issuer to commit to a dataset, the disclosing party to
 ### Root Computation
 
 **Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`.
+
 **Output:** The Merkle root.
 
 1. Compute the tree depth as `depth = ceil(log2(n))`.
-2. Set the current `level size` to `n`.
+2. Set the current `level_size` to `n`.
 3. For each `level` from `0` to `depth - 1`:
    1. Process the current level in adjacent pairs, from left to right, using `level_size`.
    2. For each pair, compute the parent hash as `H(0x01 || left || right)`.
-   3. If the final node has no right sibling, use the depth-based padding hash for the current `level` as its right sibling and increment the current `level size` to account for the padded node.
+   3. If the final node has no right sibling, use the depth-based padding hash for the current `level` as its right sibling and increment the current `level_size` to account for the padded node.
    4. Store each parent hash in the same array at index `floor(i / 2)`, overwriting the entries of the previous level from left to right, where `i` is the index of the left child.
-   5. Update the current `level size` to `ceil(level_size / 2)`.
+   5. Update the current `level_size` to `ceil(level_size / 2)`.
 3. Return the hash at index zero as the Merkle root.
 
 The algorithm reuses a single array to store successive tree levels, avoiding the need to allocate a separate array for each level. It terminates when the current level contains exactly one hash.
