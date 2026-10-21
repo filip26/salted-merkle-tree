@@ -41,14 +41,14 @@ Conceptual separation among the Issuer, Holder, and Verifier isolates trust doma
 
 ### Issuer
 
-An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension M via a keyed pseudorandom slot-distribution function, computing a Salted Merkle tree root, and generating a digital signature over the root. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
+An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension M via a keyed pseudorandom slot-distribution function, computing a salted Merkle tree root, and generating a digital signature over the root. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
 
 - Flattens the dataset into an ordered list of claims.
 - Distributes the claims across an array of size `M` using the secret-keyed HMAC slot-distribution algorithm.
-- Generates the Salted Merkle root.
-- Signs the Merkle root using the issuer's private key.
+- Generates the root.
+- Signs the root using the issuer's private key.
 - Shares the following with the holder:
-  - The signed Merkle root.
+  - The signed root.
   - The issuer's public key.
   - The secret key `K` and leaves array size `M`.
   - The dataset.
@@ -59,12 +59,12 @@ An entity that instantiates a cryptographic commitment scheme over a dataset by 
 
 ### Holder (disclosing party)
 
-An entity acting as a cryptographic prover in a selective disclosure protocol that receives the dataset, HMAC secret key `K`, array dimension `M`, and signed Merkle root from the Issuer. The Holder is responsible for serializing the dataset into a canonical sequence, mapping claims to a sparse vector of dimension `M` via the keyed slot-distribution function, computing cryptographic verification path for a subset of targeted claims, and transmitting the proofs and public parameters to the Verifier.
+An entity acting as a cryptographic prover in a selective disclosure protocol that receives the dataset, HMAC secret key `K`, array dimension `M`, and signed root from the Issuer. The Holder is responsible for serializing the dataset into a canonical sequence, mapping claims to a sparse vector of dimension `M` via the keyed slot-distribution function, computing cryptographic verification path for a subset of targeted claims, and transmitting the proofs and public parameters to the Verifier.
 
 - Flattens the dataset into an ordered list of claims.
 - Distributes the claims across an array of size `M` using the same HMAC slot-distribution algorithm and secret key `K`.
 - Selects the claims to disclose.
-- Generates the Salted Merkle tree verification path for the selected claims.
+- Generates the verification path for the selected claims.
 - Shares the following with the verifier:
   - The selected claims in their dataset representation.
   - The selected claims salts and assigned slot indices.
@@ -73,12 +73,12 @@ An entity acting as a cryptographic prover in a selective disclosure protocol th
 
 ### Verifier
 
-An entity that acts as a verifier in a selective disclosure protocol, responsible for authenticating the subset of claims revealed by the Holder. The Verifier reconstructs the Salted Merkle tree root from the disclosed claims, their respective salts, slot indices, and verification path, and cryptographically validates the issuer's digital signature over the reconstructed root using the issuer's public key.
+An entity that acts as a verifier in a selective disclosure protocol, responsible for authenticating the subset of claims revealed by the Holder. The Verifier reconstructs the tree root from the disclosed claims, their respective salts, slot indices, and verification path, and cryptographically validates the issuer's digital signature over the reconstructed root using the issuer's public key.
 
 - Flattens the relevant dataset into an ordered list of claims.
 - Hashes the disclosed claims and assigns them to their slots using the provided salts and slot indices.
-- Reconstructs the Salted Merkle root from the disclosed claims and verification path.
-- Verifies the issuer's signature on the reconstructed Merkle root using the issuer's public key.
+- Reconstructs the root from the disclosed claims and verification path.
+- Verifies the issuer's signature on the reconstructed root using the issuer's public key.
 - Accepts the disclosed claims only if signature verification.
 
 ### Example
@@ -91,9 +91,9 @@ The example shows a tree with 11 claims, padded to an even number, i.e., 12 leav
 
 The selective disclosure process involves three core algorithms, used by the issuer, the holder (the disclosing party), and the verifier:
 
-- Root Computation: The issuer computes a Merkle root from the complete, ordered set of leaf hashes. The root serves as a commitment to the dataset.
+- Root Computation: The issuer computes a root from the complete, ordered set of leaf hashes. The root serves as a commitment to the dataset.
 - Verification Path Generation: The holder (the disclosing party) selects the leaves to reveal and generates their verification path. The path provide the additional hash values and positional information needed to verify the disclosed leaves without revealing the remaining leaves.
-- Root Reconstruction and Verification: The verifier uses the disclosed leaves and their verification path to reconstruct the Merkle root. The disclosed data is accepted as consistent with the original commitment if the reconstructed root matches the trusted root.
+- Root Reconstruction and Verification: The verifier uses the disclosed leaves and their verification path to reconstruct the root. The disclosed data is accepted as consistent with the original commitment if the reconstructed root matches the trusted root.
 
 The algorithms enable the issuer to commit to a dataset, the disclosing party to reveal selected leaves, and the verifier to check them against the original commitment.
 
@@ -101,7 +101,7 @@ The algorithms enable the issuer to commit to a dataset, the disclosing party to
 
 **Input**: An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`.
 
-**Output**: The Merkle root.
+**Output**: The root hash.
 
 1. Compute the tree depth as `depth = ceil(log2(n))`.
 2. Set the current `level_size` to `n`.
@@ -158,7 +158,7 @@ These bounds assume fixed-size hash outputs, constant-time hash operations.
 
 **Input**: A sequence of disclosed claims, their corresponding salts and original leaf indices, and a verification path hashes in verification order.
 
-**Output**: The reconstructed Merkle root.
+**Output**: The reconstructed root hash.
 
 1. Initialize `mapping` with the indices of the disclosed claims and sort it by ascending original leaf index.
 2. Initialize `buffer` to hold the disclosed leaf hashes and set `level_size` to the number of disclosed claims.
