@@ -226,7 +226,7 @@ Level Padding. For a missing sibling at tree `level > 0`, derive the padding has
 
 ### Padded Leaf Size Estimation
 
-Padded leaf sizes follow discrete tiers determined by `ceil(log2(claims)^2`. While structural indicators allow observers to estimate which size tier applies, the presence of empty slots alongside actual claims conceals the exact total claim count. Sparse vector dimensions balance performance with resistance to size-estimation analysis.
+Padded leaf sizes follow discrete tiers determined by `2 ^ ceil(log2(claims))`. While structural indicators allow observers to estimate which size tier applies, the presence of empty slots alongside actual claims conceals the exact total claim count. Sparse vector dimensions balance performance with resistance to size-estimation analysis.
 
 ## Appendix
 
