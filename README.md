@@ -91,8 +91,8 @@ The example shows a tree with 11 claims, padded to an even number, i.e., 12 leav
 The selective disclosure process involves three core algorithms, used by the issuer, the holder (the disclosing party), and the verifier:
 
 - Root Computation: The issuer computes a root from the complete, ordered set of leaf hashes. The root serves as a commitment to the dataset.
-- Verification Path Generation: The holder (the disclosing party) selects the leaves to reveal and generates their verification path. The path provide the additional hash values and positional information needed to verify the disclosed leaves without revealing the remaining leaves.
-- Root Reconstruction and Verification: The verifier uses the disclosed leaves and their verification path to reconstruct the root. The disclosed data is accepted as consistent with the original commitment if the reconstructed root matches the trusted root.
+- Verification Path Generation: The holder (the disclosing party) selects the leaves to reveal and generates their verification path. The path provide the additional hashes needed to verify the disclosed leaves without revealing the rest.
+- Root Reconstruction and Verification: The verifier uses the disclosed claims, salts, indices, and verification path to reconstruct the root. The disclosed data is accepted as consistent with the original commitment if the reconstructed root matches the trusted root.
 
 The algorithms enable the issuer to commit to a dataset, the disclosing party to reveal selected leaves, and the verifier to check them against the original commitment.
 
