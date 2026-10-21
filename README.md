@@ -43,7 +43,7 @@ Conceptual separation among the Issuer, Holder, and Verifier isolates trust doma
 
 An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension M via a keyed pseudorandom slot-distribution function, computing a salted Merkle tree root, and generating a digital signature over the root. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
 
-- Flattens the dataset into an ordered list of claims.
+- Canonicalize and flattens the dataset into an ordered list of claims.
 - Distributes the claims across an array of size `M` using the secret-keyed HMAC slot-distribution algorithm. Generates HMAC secret key `K`.
 - Generates the root.
 - Signs the root using the issuer's private key.
@@ -61,7 +61,7 @@ An entity that instantiates a cryptographic commitment scheme over a dataset by 
 
 An entity acting as a cryptographic prover in a selective disclosure protocol that receives the dataset, HMAC secret key `K`, array dimension `M`, and signed root from the Issuer. The Holder is responsible for serializing the dataset into a canonical sequence, mapping claims to a sparse vector of dimension `M` via the keyed slot-distribution function, computing cryptographic verification path for a subset of targeted claims, and transmitting the proofs and public parameters to the Verifier.
 
-- Flattens the dataset into an ordered list of claims.
+- Canonicalize and flattens the dataset into an ordered list of claims.
 - Distributes the claims across an array of size `M` using the same HMAC slot-distribution algorithm and secret key `K`.
 - Selects the claims to disclose.
 - Generates the verification path for the selected claims.
@@ -75,7 +75,7 @@ An entity acting as a cryptographic prover in a selective disclosure protocol th
 
 An entity that acts as a verifier in a selective disclosure protocol, responsible for authenticating the subset of claims revealed by the Holder. The Verifier reconstructs the tree root from the disclosed claims, their respective salts, slot indices, and verification path, and cryptographically validates the issuer's digital signature over the reconstructed root using the issuer's public key.
 
-- Flattens the relevant dataset into an ordered list of claims.
+- Canonicalize and flattens the relevant dataset into an ordered list of claims.
 - Reconstructs the root from the disclosed claims, salts, indices, and verification path.
 - Verifies the issuer's signature on the reconstructed root using the issuer's public key.
 - Accepts the disclosed claims only if signature verification.
