@@ -83,7 +83,7 @@ An entity that acts as a verifier in a selective disclosure protocol, responsibl
 
 ### Example
 
-The example shows a tree with 11 claims, padded to an even number, i.e., 12 leaves. The underlying claims for leaves 1, 2, 8, and 11 are disclosed, while the remaining claims stay private. The verification path include the hash values for nodes 3:4, 5:6, 9:10 and P2 (depth-based padding level 2), as well as leaves 7 and 12, allowing the verifier to reconstruct and verify the root.
+The example shows a tree with 11 claims, padded to an even number, i.e., 12 leaves. The underlying claims for leaves 1, 2, 8, and 11 are disclosed, while the remaining claims stay private. The verification path include the hashes for leaves 7 and 12, nodes 3:4, 5:6, 9:10 and P2 (depth-based padding level 2), allowing the verifier to reconstruct and verify the root.
 
 ![Example #1](example-1.svg)
 
