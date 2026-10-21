@@ -201,8 +201,37 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 4. Hash each leaf as `H(0x00 || salt || data)`, storing the resulting hashes in a single array.
 ...
 
+### Leaf Hashes Computation and Distribution
+
+**Input**: An ordered sequence of `n` claims, their salts, a mapping from claim positions to leaf positions, and optional sorted indices of claims to omit.
+
+**Output**: An ordered sequence of leaf hashes, with selected claims left unassigned and a padding leaf added if `n` is odd.
+
+1. Initialize an array of size `n`, adding one extra slot if `n` is odd.
+2. For each claim at index `i`:
+   1. If no claims are selected for omission, or `i` does not match the next selected index, compute `H(PREFIX_LEAF || salts[i] || claims[i])` and store it at the leaf position specified by the mapping.
+   2. Otherwise, omit the claim's leaf hash and advance to the next selected index.
+3. If `n` is odd, compute the padding leaf as `H(PREFIX_LEAF || salts[n])` and store it at the position specified by the mapping for `n`.
+4. Return the array of leaf hashes.
+
 > Note: A unique, cryptographically random salt prevents attackers from efficiently guessing the contents of undisclosed leaves by precomputing hashes of likely values and comparing them against published hashes. This protection relies on keeping the salt secret for undisclosed leaves. The issuer and disclosing party can share a secret seed and deterministically derive each leaf's salt from its index, avoiding the need to store or transmit individual salts. When a leaf is disclosed, its salt must be revealed alongside the data so verifiers can recompute its hash.
 
+#### Complexity
+
+- Time Complexity: `O(n)`, as each claim is processed once and at most one padding leaf is computed.
+- Space Complexity: `O(n)` for the output buffer, including the optional padding leaf.
+
+### Salt Generation, Leaf Mapping, and Hash Computation
+
+Salt Generation. Generate salts for all claims, ensuring the total number of salts is even by adding one additional entry if the number of claims is odd. Each salt is derived as `HMAC(K, 0x10 || uint32_be(i))`, where `i` is the entry index.
+
+Leaf Mapping. Initialize the mapping with the original leaf indices and sort them by their corresponding salts in ascending lexicographic order. The resulting mapping assigns each original leaf index to its position in the tree.
+
+Leaf Hash Computation. Compute each leaf hash as `H(0x00 || salt || data)`. For a padding leaf, omit the data component, yielding `H(0x00 || salt)`.
+
+Internal Node Hash Computation. Compute each parent hash as `H(0x01 || left || right)`, preserving the order of the left and right child hashes.
+
+Level Padding. For a missing sibling at tree level `level > 0`, derive the padding hash as `H(0x02 || HMAC(K, 0x11 || uint32_be(level)))`. The level-specific value allows incomplete tree levels to be handled without explicitly materializing all padding nodes.
 
 ## Appendix
 
