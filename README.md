@@ -162,7 +162,7 @@ These bounds assume fixed-size hash outputs, constant-time hash operations.
 
 1. Initialize `mapping` with the indices of the disclosed claims and sort it by ascending original leaf index.
 2. Initialize `buffer` to hold the disclosed leaf hashes and set `level_size` to the number of disclosed claims.
-3. For each disclosed claim, compute its leaf hash as `H(PREFIX_LEAF || salt || claim)` and store it in `buffer`. Update the corresponding `mapping` entry to the claim's original leaf index.
+3. For each disclosed claim, compute its leaf hash as `H(0x00 || salt || claim)` and store it in `buffer`. Update the corresponding `mapping` entry to the claim's original leaf index.
 4. While `level_size > 1` or unconsumed verification path hashes remain:
    1. Set `next_level_size = 0`.
    2. Process the current level from left to right, using the mapping to determine each node's position.
@@ -194,9 +194,9 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 
 1. Initialize an array of size `n`, adding one extra slot if `n` is odd.
 2. For each claim at index `i`:
-   1. If no claims are selected for omission, or `i` does not match the next selected index, compute `H(PREFIX_LEAF || salts[i] || claims[i])` and store it at the leaf position specified by the mapping.
+   1. If no claims are selected for omission, or `i` does not match the next selected index, compute `H(0x00 || salts[i] || claims[i])` and store it at the leaf position specified by the mapping.
    2. Otherwise, omit the claim's leaf hash and advance to the next selected index.
-3. If `n` is odd, compute the padding leaf as `H(PREFIX_LEAF || salts[n])` and store it at the position specified by the mapping for `n`.
+3. If `n` is odd, compute the padding leaf as `H(0x00 || salts[n])` and store it at the position specified by the mapping for `n`.
 4. Return the array of leaf hashes.
 
 #### Complexity
