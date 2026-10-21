@@ -3,9 +3,9 @@
 
 # Salted Merkle Tree for Selective Disclosure
 
-A Salted Merkle tree is a cryptographic commitment structure. Selective disclosure is achieved by revealing only the targeted leaf nodes data and their corresponding verification paths while keeping undisclosed claims private. It enables a verifier to validate disclosed claims against a single Merkle root. The design prioritizes security, privacy, and computational efficiency.
+A Salted Merkle tree is a cryptographic commitment structure. Selective disclosure is achieved by revealing only the targeted leaf nodes data and their corresponding verification path while keeping undisclosed claims private. It enables a verifier to validate disclosed claims against a single Merkle root. The design prioritizes security, privacy, and computational efficiency.
 
-The tree is binary and balanced, using unique padding hashes to handle missing siblings without explicitly constructing or storing all padding nodes. This avoids the space and computation overhead of materializing a fully padded tree. For `n` leaves, root computation takes `O(n)` time and `O(n)` space. The tree depth and the size of an individual verification path are `O(log n)`. Verification paths for multiple disclosed leaves  share common nodes, reducing the total proof size.
+The tree is binary and balanced, using unique padding hashes to handle missing siblings without explicitly constructing or storing all padding nodes. This avoids the space and computation overhead of materializing a fully padded tree. For `n` leaves, root computation takes `O(n)` time and `O(n)` space. The tree depth and the size of an individual verification path are `O(log n)`. Verification path generation takes `O(n)` and for multiple disclosed leaves  share common nodes, reducing the total proof size.
 
 ## Design Objectives
 
@@ -86,8 +86,8 @@ The example shows a tree with 11 claims, padded to an even number, i.e., 12 leav
 The selective disclosure process involves three core algorithms, used by the issuer, the holder (the disclosing party), and the verifier:
 
 - Root Computation: The issuer computes a Merkle root from the complete, ordered set of leaf hashes. The root serves as a commitment to the dataset.
-- Verification Path Generation: The holder (the disclosing party) selects the leaves to reveal and generates their verification paths. These paths provide the additional hash values and positional information needed to verify the disclosed leaves without revealing the remaining leaves.
-- Root Reconstruction and Verification: The verifier uses the disclosed leaves and their verification paths to reconstruct the Merkle root. The disclosed data is accepted as consistent with the original commitment if the reconstructed root matches the trusted root.
+- Verification Path Generation: The holder (the disclosing party) selects the leaves to reveal and generates their verification path. The path provide the additional hash values and positional information needed to verify the disclosed leaves without revealing the remaining leaves.
+- Root Reconstruction and Verification: The verifier uses the disclosed leaves and their verification path to reconstruct the Merkle root. The disclosed data is accepted as consistent with the original commitment if the reconstructed root matches the trusted root.
 
 The algorithms enable the issuer to commit to a dataset, the disclosing party to reveal selected leaves, and the verifier to check them against the original commitment.
 
@@ -115,10 +115,8 @@ Let `n` be the number of leaves:
 
 - Time Complexity: `O(n)`. The algorithm hashes each leaf once and computes one parent hash per node pair, including pairs completed using padding. The total number of internal-node hashes is `n - 1`.
 - Space Complexity: `O(n)`. The algorithm stores leaf hashes in a single array and reuses that array for successive tree levels, avoiding additional arrays proportional to the number of leaves.
-- Tree Depth: `O(log n)`. The number of levels processed grows logarithmically with the number of leaves.
 
 These bounds assume fixed-size hash outputs and constant-time hash operations.
-
 
 ### Verification Path Generation
 
@@ -140,6 +138,17 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 4. Return the verification path hashes.
 
 The algorithm reuses a single buffer to store successive tree levels, promoting only nodes that were not selected nor already added to the verification path, avoiding the need to allocate a separate array for each level and unnecesary computations.
+
+#### Complexity
+
+Let `n` be the number of leaves:
+
+- Time Complexity: `O(n)`. The algorithm processes the nodes at each tree level, performing constant-time checks and updates for each node. Since the number of nodes decreases geometrically at each level, the total number of node operations across all levels is `(O(n)`. Hash computations are performed only when both children are present.
+- Space Complexity: `O(n)`. The algorithm reuses a single array to store successive tree levels and stores the verification path, which can contain up to `O(log2(n))` hashes for a single selected leaf.
+
+These bounds assume fixed-size hash outputs, constant-time hash operations.
+
+
 
 ### Leaf Hashes Computation and Distribution
 
