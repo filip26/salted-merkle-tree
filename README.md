@@ -5,7 +5,9 @@
 
 A Salted Merkle tree is a cryptographic commitment structure. Selective disclosure is achieved by revealing only the targeted leaf nodes data and their corresponding verification path while keeping undisclosed claims private. It enables a verifier to validate disclosed claims against a single Merkle root. The design prioritizes security, privacy, and computational efficiency.
 
-The tree is binary and balanced, using unique padding hashes to handle missing siblings without explicitly constructing or storing all padding nodes. This avoids the space and computation overhead of materializing a fully padded tree. For `n` leaves, root computation takes `O(n)` time and `O(n)` space. The tree depth and the size of an individual verification path are `O(log n)`. Verification path generation takes `O(n)` and for multiple disclosed leaves  share common nodes, reducing the total proof size.
+The tree is binary and balanced, using unique padding hashes to handle missing siblings without explicitly constructing or storing all padding nodes. This reduces the space and computational overhead associated with materializing a fully padded tree. Each leaf hash is salted to prevent offline dictionary attacks against the underlying claims.
+
+For `n` leaves, root computation takes `O(n)` time and `O(n)` space, while the tree depth is `O(log n)`. Verification path generation takes `O(n)` time and `O(n)` space. The size of an individual verification path is `O(log n)`. When multiple leaves are disclosed, their verification paths can share common nodes, reducing the total proof size.
 
 ## Design Objectives
 
@@ -143,7 +145,7 @@ The algorithm reuses a single buffer to store successive tree levels, promoting 
 
 Let `n` be the number of leaves:
 
-- Time Complexity: `O(n)`. The algorithm processes the nodes at each tree level, performing constant-time checks and updates for each node. Since the number of nodes decreases geometrically at each level, the total number of node operations across all levels is `(O(n)`. Hash computations are performed only when both children are present.
+- Time Complexity: `O(n)`. The algorithm processes the nodes at each tree level, performing constant-time checks and updates for each node. Since the number of nodes decreases geometrically at each level, the total number of node operations across all levels is `O(n)`. Hash computations are performed only for undisclosed leaves and their parent nodes.
 - Space Complexity: `O(n)`. The algorithm reuses a single array to store successive tree levels and stores the verification path, which can contain up to `O(log2(n))` hashes for a single selected leaf.
 
 These bounds assume fixed-size hash outputs, constant-time hash operations.
