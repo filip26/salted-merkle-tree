@@ -222,6 +222,12 @@ Level Padding. For a missing sibling at tree `level > 0`, derive the padding has
 
 > Note: Domain separation prefixes for salt generation, leaf hashing, internal node computation, and level padding ensure that inputs from different structural contexts remain strictly separated, preventing hash collisions, type-confusion attacks, or second-preimage vulnerabilities between different node types and derivation steps.
 
+## Security Considerations
+
+### Padded Leaf Size Estimation
+
+Padded leaf sizes follow discrete tiers determined by `ceil(log2(claims)^2`. While structural indicators allow observers to estimate which size tier applies, the presence of empty slots alongside actual claims conceals the exact total claim count. Sparse vector dimensions balance performance with resistance to size-estimation analysis.
+
 ## Appendix
 
 ### JSON Dataset
