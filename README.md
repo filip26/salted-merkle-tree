@@ -122,7 +122,7 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 
 ### Verification Path Generation
 
-**Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`, and a selected leaf hash is not set.
+**Input:** An ordered sequence of `n` leaf hashes, where `n` is even and `n > 1`, and a selected leaf hashes are not set. Only not selected leaf hashes are computed and present.
 
 **Output:** The verification path hashes in verification order.
 
@@ -138,7 +138,7 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
    4. Update the current `level_size` to `ceil(level_size / 2)`.
 4. Return the verification path hashes.
 
-The algorithm reuses a single buffer to store successive tree levels, avoiding the need to allocate a separate array for each level.
+The algorithm reuses a single buffer to store successive tree levels, promoting only nodes that were not selected nor already added to the verification path, avoiding the need to allocate a separate array for each level and unnecesary computations.
 
 ### Leaf Hashes Computation and Distribution
 
