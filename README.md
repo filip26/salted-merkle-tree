@@ -111,7 +111,7 @@ The algorithms enable the issuer to commit to a dataset, the disclosing party to
    3. If the final node has no right sibling, use the depth-based padding hash for the current `level` as its right sibling and increment the current `level_size` to account for the padded node.
    4. Store each parent hash in the same array at index `floor(i / 2)`, overwriting the entries of the previous level from left to right, where `i` is the index of the left child.
    5. Update the current `level_size` to `ceil(level_size / 2)`.
-3. Return the hash at index zero as the Merkle root.
+3. Return the hash at index zero as the root.
 
 The algorithm reuses a single array to store successive tree levels, avoiding the need to allocate a separate array for each level. It terminates when the current level contains exactly one hash.
 
@@ -170,7 +170,7 @@ These bounds assume fixed-size hash outputs, constant-time hash operations.
       1. If `node_index` is odd, consume the next verification path hash as the left sibling, use the current buffer entry as the right child, and compute the parent hash as `H(0x01 || left || right)`.
       2. Otherwise, if the right node is present and its mapping entry equals `node_index + 1`, compute the parent hash from the current node and the next node as `H(0x01 || left || right)`, and advance iterator past both children.
       3. Otherwise, consume the next verification path hash as the right sibling, use the current entry as the left child, and compute the parent hash as `H(0x01 || left || right)`.
-      4. Store the parent hash at index `next_level_size` in the buffer and store `floor(node_index / 2)` at the corresponding mapping entry.
+      4. Store the parent hash at index `next_level_size` in the `buffer` and store `floor(node_index / 2)` at the corresponding mapping entry.
       5. Increment `next_level_size`.
    4. Set `level_size` to `next_level_size`.
 5. Return `buffer[0]` as the reconstructed root.
