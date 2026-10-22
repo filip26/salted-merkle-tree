@@ -365,6 +365,15 @@ label map:
 }
 ```
 
+The figure below shows the complete Merkle tree constructed by the issuer and holder using these salts and the resulting mapping.
+
+![Example #3](example-3.svg)
+
+Assume the holder selects claims at original indices `2` and `3` for disclosure. Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
+
+```
+```
+
 The issuer and holder apply the same canonicalization and claim-encoding rules before computing the Merkle tree and generating disclosure proofs. When selected claims are disclosed, the verifier can reconstruct the commitment using the disclosed N-Quads claims, their salts and indices, and the verification path, without receiving the undisclosed statements.
 
 > Note: Each claim is the UTF-8 encoding of one canonical N-Quads line, including its line terminator. For demonstration purposes, byte arrays may be represented as hexadecimal-encoded strings.
