@@ -235,6 +235,10 @@ i.e. A combined tree with two child hashes, one for the mandatory claims and one
 
 Padded leaf sizes follow discrete tiers determined by `2 ^ ceil(log2(claims))`. While structural indicators allow observers to estimate which size tier applies, the presence of empty slots alongside actual claims conceals the exact total claim count. Sparse vector dimensions balance performance with resistance to size-estimation analysis.
 
+### Verification Resource Limits
+
+Verifiers should enforce configurable limits on the number of disclosed claims, the total size of the received dataset and verification path, the magnitude of claim indices, and the computational resources consumed during canonicalization and root reconstruction. These limits help prevent denial-of-service attacks caused by excessively large or computationally expensive disclosure proofs. Inputs exceeding the configured limits should be rejected before expensive processing begins.
+
 ## Appendix
 
 ### JSON Dataset
