@@ -439,3 +439,5 @@ The `ceil`, `floor`, and `log2` operations can be implemented using integer arit
 Here, `bit_length(x)` is the number of bits in the binary representation of `x`. e.g. in Java, it can be computed as `32 - Integer.numberOfLeadingZeros(x)` for positive `int` values.
 
 ### Implementations
+
+[SaltedMerkleTree.java](https://github.com/filip26/iron-verifiable-credentials/blob/main/selective-disclosure/salted-merkle-tree/src/main/java/com/apicatalog/smt/SaltedMerkleTree.java)
