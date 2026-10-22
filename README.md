@@ -341,12 +341,13 @@ RDF datasets represent information as RDF statements, each consisting of a subje
 Consider an RDF dataset containing the following statements, represented in N-Quads:
 
 ```nquads
+_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
+_:b0 <http://schema.org/name> "Filip Kolařík" .
 _:b0 <http://schema.org/city> "Prague" .
 _:b0 <http://schema.org/country> "Czech Republic" .
-_:b0 <http://schema.org/name> "Filip Kolařík" .
 _:b0 <http://schema.org/url> "https://github.com/filip26" .
-_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
 ```
+
 RDFC-1.0 canonicalization produces a deterministic N-Quads representation. Each resulting line, including its terminating period and required whitespace, is encoded as UTF-8 and becomes one claim. Blank nodes are relabeled using HMAC with OTK:
 
 ```text
