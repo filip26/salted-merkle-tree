@@ -13,7 +13,7 @@ For `n` leaves, root computation takes `O(n)` time and `O(n)` space, while the t
 
 - Secure Verification: Uses distinct domain-separation prefixes for leaf data, internal nodes, and padding values to distinguish hash inputs by type. Verification recomputes the commitment according to deterministic hashing rules and compares the resulting root with the trusted commitment.
 - Privacy: Keeps undisclosed contents private while allowing disclosed claims to be independently verified.
-- Unlinkability: Preserves the privacy of the total number of claims and the distribution of undisclosed claims, preventing their disclosure through the selective disclosure process.
+- Unlinkability: Preserves the privacy of the total number of claims and the distribution of undisclosed claims, preventing their disclosure through the selective disclosure process. It also adopts a three-party model that avoids direct communication between the verifier and issuer, preventing the issuer from learning about verification requests through call-home interactions.
 - Computational Efficiency: Supports bottom-up root computation, verification path generation, and bottom-up verification with limited intermediate storage. For multiple disclosed elements, shared verification nodes are reused to reduce proof size, memory requirements, and verification overhead.
 - Structural Simplicity: Uses deterministic, salted padding to handle incomplete node pairs according to a fixed construction rule, avoiding ad hoc tree restructuring.
 
