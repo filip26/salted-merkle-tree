@@ -277,7 +277,7 @@ For the example above, flattening produces three claims, each represented as a b
 Using the following test HMAC secret key (hex-encoded):
 
 ```
-"00112233445566778899AABBCCDDEEFF00112233445566778899AABBCCDDEEFF"
+00112233445566778899AABBCCDDEEFF00112233445566778899AABBCCDDEEFF
 ```
 
 Salt generation and claim distribution produce the following deterministic outputs:
@@ -294,7 +294,7 @@ mapping = [0, 2, 3, 1]
 
 Applying the root computation algorithm produces the following root hash:
 ```
-"ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6"
+ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6
 ```
 
 The figure below shows the complete Merkle tree constructed by the issuer and holder using these salts and the resulting mapping.
@@ -365,14 +365,56 @@ label map:
 }
 ```
 
+Using the following test HMAC secret key (hex-encoded):
+
+```
+FFEEDDCCBBAA99887766554433221100FFEEDDCCBBAA99887766554433221100
+```
+
+Salt generation and claim distribution produce the following deterministic outputs:
+
+```javascript
+salts = [
+  "...",
+  "...",
+  "...",
+  "...",
+  "..."
+]
+mapping = [5, 4, 3, 2, 0, 1]
+```
+
+Applying the root computation algorithm produces the following root hash:
+
+```
+```
+
 The figure below shows the complete Merkle tree constructed by the issuer and holder using these salts and the resulting mapping.
 
 ![Example #3](example-3.svg)
 
 Assume the holder selects claims at original indices `2` and `3` for disclosure. Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
 
+```nquads
+_:b0 <http://schema.org/name> "Filip Kolařík" .
+_:b0 <http://schema.org/url> "https://github.com/filip26" .
 ```
+
+```javascript
+salts = [
+  ",
+  ""
+]
+path = [
+  ",
+  ""
+]
+indices = [3, 2]
+labels = [
+]
+root = ""
 ```
+
 
 The issuer and holder apply the same canonicalization and claim-encoding rules before computing the Merkle tree and generating disclosure proofs. When selected claims are disclosed, the verifier can reconstruct the commitment using the disclosed N-Quads claims, their salts and indices, and the verification path, without receiving the undisclosed statements.
 
