@@ -274,6 +274,34 @@ UTF8("/country") || 0x00 || UTF8("\"Czech Republic\"")
 UTF8("/name") || 0x00 || UTF8("\"Filip\"")
 ```
 
+Using the following test HMAC secret key (hex-encoded):
+
+```
+"00112233445566778899AABBCCDDEEFF00112233445566778899AABBCCDDEEFF"
+```
+
+Salt generation and claim distribution produce the following deterministic outputs:
+
+```javascript
+salts = [
+  "03237fd5b59cdd7d77b7f4e7d8060ac9abe2ff38b3fc8ad746751957129d0819",
+  "2e42d305c3888a55c992514a4b635f0739ceb3fe02584f522703df1551938091",
+  "0d5179c215af6add040e76606c4ec726de65fbfd6a30df73fb8d00744f1ce215",
+  "24e203e63059712675d0f27af19e17c212fadd6ef0d16492f4b86068084f3614"
+]
+mapping = [0, 2, 3, 1]
+```
+
+The figure below shows the complete Merkle tree constructed by the issuer and holder using these salts and the resulting mapping.
+
+![Example #2](example-2.svg)
+
+Applying the root computation algorithm produces the following root hash:
+```
+"ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6"
+```
+
+
 ### Implementation Note
 
 The `ceil`, `floor`, and `log2` operations can be implemented using integer arithmetic and bitwise operations, avoiding floating-point calculations and reducing computational overhead.
