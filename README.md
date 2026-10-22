@@ -264,9 +264,9 @@ JCS canonicalization produces:
 {"city":"Prague","country":"Czech Republic","name":"Filip"}
 ```
 
-The flattening rule recursively traverses objects in order of the JCS canonicalized document. Each scalar value becomes a claim encoded as the UTF-8 bytes of its JSON Pointer (RFC 6901), followed by the 0x00 separator and the UTF-8 bytes of its JCS-canonicalized value. Container values are not emitted as claims; only their descendants are included.
+The flattening rule recursively traverses objects in order of the JCS canonicalized document. Each scalar value becomes a claim encoded as the UTF-8 bytes of its JSON Pointer (RFC 6901), followed by the 0x00 separator and the UTF-8 bytes of its JCS canonicalized value. Container values are not emitted as claims; only their descendants are included.
 
-For the example above, flattening produces:
+For the example above, flattening produces three claims, each represented as a byte array:
 
 ```
 UTF8("/city") || 0x00 || UTF8("\"Prague\"")
