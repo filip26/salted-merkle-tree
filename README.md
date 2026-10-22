@@ -306,7 +306,7 @@ Assume the holder selects claims at original indices `0` and `1` for disclosure.
 ```javascript
 dataset = {
   "city": "Prague",
-  "country": "Czech Rebublic"
+  "country": "Czech Republic"
 }
 salts = [
   "03237fd5b59cdd7d77b7f4e7d8060ac9abe2ff38b3fc8ad746751957129d0819",
