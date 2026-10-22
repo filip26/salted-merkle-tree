@@ -307,7 +307,7 @@ Assume the holder selects claims at original indices `0` and `1` for disclosure.
 dataset = {
   "city": "Prague",
   "country": "Czech Rebublic"
-},
+}
 salts = [
   "03237fd5b59cdd7d77b7f4e7d8060ac9abe2ff38b3fc8ad746751957129d0819",
   "2e42d305c3888a55c992514a4b635f0739ceb3fe02584f522703df1551938091"
@@ -316,8 +316,8 @@ path = [
   "46d2beb76d8fd5d41daf290e037fec622fc83ecf677598c6c117095688a45ee1",
   "b3a49a28389c75494f9760a4f8c5ca557c380818d5f4782972069f792384bf51"
 ]
-indices = [0, 2],
-root = "00112233445566778899AABBCCDDEEFF00112233445566778899AABBCCDDEEFF",
+indices = [0, 2]
+root = "ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6"
 ```
 
 The verifier uses the disclosed claims, their salts and indices, the verification path, and the issuer's signature to reconstruct the Merkle root and verify the claims' integrity and authenticity without revealing the remaining claims.
