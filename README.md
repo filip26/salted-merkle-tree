@@ -324,7 +324,7 @@ path = [
   "b3a49a28389c75494f9760a4f8c5ca557c380818d5f4782972069f792384bf51"
 ]
 indices = [0, 2]
-root = "ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6"
+signature = Sig(root:"ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6")
 ```
 
 The verifier uses the disclosed claims, their salts and indices, the verification path, and the issuer's signature to reconstruct the Merkle root and verify the claims' integrity and authenticity without revealing the remaining claims.
@@ -424,7 +424,7 @@ indices = [3, 2]
 labels = [
   "4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9"
 ]
-root = "..."
+signature = Sig(root:"...")
 ```
 
 The issuer and holder apply the same canonicalization, blank node relabeling, and claim-encoding rules before computing the Merkle tree and generating disclosure proofs. The verifier canonicalizes the disclosed RDF dataset and applies the corresponding blank node relabeling and claim-encoding rules to reconstruct the disclosed claims. Using these claims, their salts and indices, and the verification path, the verifier reconstructs the Merkle root and verifies the issuer's signature without receiving the undisclosed statements.
