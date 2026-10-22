@@ -221,6 +221,14 @@ Level Padding. For a missing sibling at tree `level > 0`, derive the padding has
 
 > Note: Domain separation prefixes for salt generation, leaf hashing, internal node computation, and level padding ensure that inputs from different structural contexts remain strictly separated, preventing hash collisions, type-confusion attacks, or second-preimage vulnerabilities between different node types and derivation steps.
 
+## Mandatory Claims
+
+Mandatory claims must always be disclosed to the verifier. Processing them as selectively disclosable claims with disclosure always enabled is computationally inefficient; they require a separate algorithm.
+
+Datasets containing both mandatory and optional claims should be split into two parts: one processed by the mandatory-claims algorithm and the other by the selective-disclosure algorithm.
+
+i.e. A combined tree with two child hashes, one for the mandatory claims and one for the selective-disclosure root, allows a single commitment to cover both while keeping the algorithms separate.
+
 ## Security Considerations
 
 ### Padded Leaf Size Estimation
@@ -231,7 +239,14 @@ Padded leaf sizes follow discrete tiers determined by `2 ^ ceil(log2(claims))`. 
 
 ### JSON Dataset
 
-### Example
+JSON datasets are structured as hierarchical collections of objects and arrays. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values, while canonicalization ensures deterministic encoding independent of superficial serialization differences.
+
+- Canonicalize the dataset using the JSON Canonicalization Scheme (JCS, RFC 8785).
+- Flatten the canonicalized JSON into an ordered sequence of claims, one per JSON value at a defined JSON Pointer.
+- Encode each claim as: `UTF8(JSONPointer) || 0x00 || JCS(value)` where `JSONPointer` follows RFC 6901, `UTF8` encodes the pointer as UTF-8, `0x00` is a separator, and `value` is the UTF-8 encoding of the value serialized according to JCS.
+- Preserve a deterministic ordering of claims to ensure consistent commitment generation and verification.
+
+#### Example
 
 ### Implementation Note
 
