@@ -337,21 +337,31 @@ RDF datasets represent information as RDF statements, each consisting of a subje
 #### Example
 
 Consider an RDF dataset containing the following statements, represented in N-Quads:
-<!--
+
 ```nquads
-<https://example.org/person/1> <https://schema.org/name> "Filip" .
-<https://example.org/person/1> <https://schema.org/addressLocality> "Prague" .
-<https://example.org/person/1> <https://schema.org/addressCountry> "Czech Republic" .
+_:b0 <http://schema.org/city> "Prague" .
+_:b0 <http://schema.org/country> "Czech Republic" .
+_:b0 <http://schema.org/name> "Filip Kolařík" .
+_:b0 <http://schema.org/url> "https://github.com/filip26" .
+_:b0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .
 ```
--->
-RDFC-1.0 canonicalization produces a deterministic N-Quads representation. Each resulting line, including its terminating period and required whitespace, is encoded as UTF-8 and becomes one claim:
-<!--
+RDFC-1.0 canonicalization produces a deterministic N-Quads representation. Each resulting line, including its terminating period and required whitespace, is encoded as UTF-8 and becomes one claim. Blank nodes are relabeled using HMAC with OTK:
+
 ```text
-0: UTF8("<https://example.org/person/1> <https://schema.org/addressCountry> \"Czech Republic\" .\n")
-1: UTF8("<https://example.org/person/1> <https://schema.org/addressLocality> \"Prague\" .\n")
-2: UTF8("<https://example.org/person/1> <https://schema.org/name> \"Filip\" .\n")
+0: UTF8("_:c14n0 <http://schema.org/city> "Prague" .\n")
+1: UTF8("_:c14n0 <http://schema.org/country> "Czech Republic" .\n")
+2: UTF8("_:c14n0 <http://schema.org/name> "Filip Kolařík" .\n")
+3: UTF8("_:c14n0 <http://schema.org/url> "https://github.com/filip26" .\n")
+4: UTF8("_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .\n")
 ```
--->
+label map:
+
+```javascript
+{
+  "c14n0" : ""
+}
+```
+
 The issuer and holder apply the same canonicalization and claim-encoding rules before computing the Merkle tree and generating disclosure proofs. When selected claims are disclosed, the verifier can reconstruct the commitment using the disclosed N-Quads claims, their salts and indices, and the verification path, without receiving the undisclosed statements.
 
 > Note: Each claim is the UTF-8 encoding of one canonical N-Quads line, including its line terminator. For demonstration purposes, byte arrays may be represented as hexadecimal-encoded strings.
