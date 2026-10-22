@@ -269,9 +269,9 @@ The flattening rule recursively traverses objects in order of the JCS canonicali
 For the example above, flattening produces three claims, each represented as a byte array:
 
 ```
-UTF8("/city") || 0x00 || UTF8("\"Prague\"")
-UTF8("/country") || 0x00 || UTF8("\"Czech Republic\"")
-UTF8("/name") || 0x00 || UTF8("\"Filip\"")
+0: UTF8("/city") || 0x00 || UTF8("\"Prague\"")
+1: UTF8("/country") || 0x00 || UTF8("\"Czech Republic\"")
+2: UTF8("/name") || 0x00 || UTF8("\"Filip\"")
 ```
 
 Using the following test HMAC secret key (hex-encoded):
@@ -292,15 +292,32 @@ salts = [
 mapping = [0, 2, 3, 1]
 ```
 
-The figure below shows the complete Merkle tree constructed by the issuer and holder using these salts and the resulting mapping.
-
-![Example #2](example-2.svg)
-
 Applying the root computation algorithm produces the following root hash:
 ```
 "ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6"
 ```
 
+The figure below shows the complete Merkle tree constructed by the issuer and holder using these salts and the resulting mapping.
+
+![Example #2](example-2.svg)
+
+Assume the holder selects claims at original indices `0` and `1` for disclosure. Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
+
+```javascript
+dataset = {
+  "city": "Prague",
+  "country": "Czech Rebublic"
+}
+path = [
+ "46d2beb76d8fd5d41daf290e037fec622fc83ecf677598c6c117095688a45ee1",
+ "b3a49a28389c75494f9760a4f8c5ca557c380818d5f4782972069f792384bf51"
+]
+indices = [0, 2]
+```
+
+The verifier uses the disclosed claims, their salts and indices, the verification path, and the issuer's signature to reconstruct the Merkle root and verify the claims' integrity and authenticity without revealing the remaining claims.
+
+> Note: For demonstration purposes, byte arrays are represented as hexadecimal-encoded strings.
 
 ### Implementation Note
 
