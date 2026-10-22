@@ -301,7 +301,9 @@ The figure below shows the complete Merkle tree constructed by the issuer and ho
 
 ![Example #2](example-2.svg)
 
-Assume the holder selects claims at original indices `0` and `1` for disclosure. Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
+Assume the holder selects claims at original indices `0` and `1` for disclosure. Claim indices in the examples are zero-based, while claims in the diagram are numbered from `1`; therefore, the selected claims correspond to claims `1` and `2` in the diagram.
+
+Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
 
 ```javascript
 dataset = {
@@ -395,7 +397,9 @@ The figure below shows the complete Merkle tree constructed by the issuer and ho
 
 ![Example #3](example-3.svg)
 
-Assume the holder selects claims at original indices `2` and `3` for disclosure. Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
+Assume the holder selects claims at original indices `2` and `3` for disclosure. Claim indices in the examples are zero-based, while claims in the diagram are numbered from `1`; therefore, the selected claims correspond to claims `3` and `4` in the diagram.
+
+Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
 
 ```nquads
 _:b0 <http://schema.org/url> "https://github.com/filip26" .
