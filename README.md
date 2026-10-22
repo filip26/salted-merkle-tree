@@ -334,6 +334,8 @@ RDF datasets represent information as RDF statements, each consisting of a subje
 - Treat each N-Quads statement as a separate claim, encoded as its UTF-8 byte sequence.
 - Preserve the canonical statement order and the blank node label maps required to consistently identify and disclose claims during proof generation and verification.
 
+> Note: Before sharing the blank node label map with the verifier, it must be updated to reflect the canonical blank node identifiers resulting from the disclosed subset. The map associates each canonical blank node identifier with its HMAC-derived label. Blank nodes that do not occur in the disclosed statements must be excluded, and the remaining canonical identifiers must be renumbered consistently with the disclosed subset. For example, if the original map contains three blank nodes but only the third appears in the disclosure, the shared map must update that node's canonical identifier to the first blank node identifier, while retaining its corresponding HMAC-derived label.
+
 #### Example
 
 Consider an RDF dataset containing the following statements, represented in N-Quads:
