@@ -351,19 +351,21 @@ _:b0 <http://schema.org/url> "https://github.com/filip26" .
 RDFC-1.0 canonicalization produces a deterministic N-Quads representation. Each resulting line, including its terminating period and required whitespace, is encoded as UTF-8 and becomes one claim. Blank nodes are relabeled using HMAC with OTK:
 
 ```text
-0: UTF8("_:c14n0 <http://schema.org/city> "Prague" .\n")
-1: UTF8("_:c14n0 <http://schema.org/country> "Czech Republic" .\n")
-2: UTF8("_:c14n0 <http://schema.org/name> "Filip Kolařík" .\n")
-3: UTF8("_:c14n0 <http://schema.org/url> "https://github.com/filip26" .\n")
-4: UTF8("_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .\n")
+0: UTF8("_:4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9 <http://schema.org/city> "Prague" .\n")
+1: UTF8("_:4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9 <http://schema.org/country> "Czech Republic" .\n")
+2: UTF8("_:4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9 <http://schema.org/name> "Filip Kolařík" .\n")
+3: UTF8("_:4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9 <http://schema.org/url> "https://github.com/filip26" .\n")
+4: UTF8("_:4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://schema.org/Person> .\n")
 ```
 label map:
 
 ```javascript
 {
-  "c14n0" : ""
+  "c14n0" : "4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9"
 }
 ```
+
+> Note: The issuer generates the HMAC one-time key (OTK) to derive the HMAC-based blank node labels and then discards the key. The resulting blank node label map is shared with the holder unchanged and is used during selective disclosure.
 
 Using the following test HMAC secret key (hex-encoded):
 
@@ -396,27 +398,27 @@ The figure below shows the complete Merkle tree constructed by the issuer and ho
 Assume the holder selects claims at original indices `2` and `3` for disclosure. Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
 
 ```nquads
-_:b0 <http://schema.org/name> "Filip Kolařík" .
 _:b0 <http://schema.org/url> "https://github.com/filip26" .
+_:b0 <http://schema.org/name> "Filip Kolařík" .
 ```
 
 ```javascript
 salts = [
-  ",
-  ""
+  "...",
+  "..."
 ]
 path = [
-  ",
-  ""
+  "...",
+  "..."
 ]
 indices = [3, 2]
 labels = [
+  "4d654d204d8cb959b00c0ddb03c8b9deca93cf80cfcae435fa6769ef9ff88dc9"
 ]
-root = ""
+root = "..."
 ```
 
-
-The issuer and holder apply the same canonicalization and claim-encoding rules before computing the Merkle tree and generating disclosure proofs. When selected claims are disclosed, the verifier can reconstruct the commitment using the disclosed N-Quads claims, their salts and indices, and the verification path, without receiving the undisclosed statements.
+The issuer and holder apply the same canonicalization, blank node relabeling, and claim-encoding rules before computing the Merkle tree and generating disclosure proofs. The verifier canonicalizes the disclosed RDF dataset and applies the corresponding blank node relabeling and claim-encoding rules to reconstruct the disclosed claims. Using these claims, their salts and indices, and the verification path, the verifier reconstructs the Merkle root and verifies the issuer's signature without receiving the undisclosed statements.
 
 > Note: Each claim is the UTF-8 encoding of one canonical N-Quads line, including its line terminator. For demonstration purposes, byte arrays may be represented as hexadecimal-encoded strings.
 
