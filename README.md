@@ -449,3 +449,7 @@ Here, `bit_length(x)` is the number of bits in the binary representation of `x`.
 ### Implementations
 
 [SaltedMerkleTree.java](https://github.com/filip26/iron-verifiable-credentials/blob/main/selective-disclosure/salted-merkle-tree/src/main/java/com/apicatalog/smt/SaltedMerkleTree.java)
+
+## License
+
+This work is licensed under the [Creative Commons Attribution 4.0 International (CC-BY-4.0)](https://github.com/filip26/salted-merkle-tree?tab=CC-BY-4.0-1-ov-file#) license.
