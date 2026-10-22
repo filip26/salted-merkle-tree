@@ -142,7 +142,8 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
    4. Update the current `level_size` to `ceil(level_size / 2)`.
 4. Return the verification path hashes.
 
-The algorithm reuses a single buffer to store successive tree levels, promoting only nodes that were not selected nor already added to the verification path, avoiding the need to allocate a separate array for each level and unnecesary computations.
+
+The algorithm reuses a single buffer to store successive tree levels, promoting only nodes that were neither selected nor already added to the verification path, avoiding the need to allocate a separate array for each level and unnecessary computations.
 
 #### Complexity
 
