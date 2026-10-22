@@ -324,6 +324,38 @@ The verifier uses the disclosed claims, their salts and indices, the verificatio
 
 > Note: For demonstration purposes, byte arrays are represented as hexadecimal-encoded strings.
 
+### RDF Dataset
+
+RDF datasets represent information as RDF statements, each consisting of a subject, predicate, object, and graph name. Selective disclosure treats each statement as an independently committable claim. 
+
+- Canonicalize the RDF dataset using RDF Dataset Canonicalization (RDFC-1.0), preserving the mapping between original blank node identifiers and their canonical identifiers.
+- Relabel the canonical blank node identifiers using HMAC with the one-time key (OTK), preserving the mapping between canonical blank node identifiers and their HMAC-derived labels.
+- Serialize the relabeled dataset as N-Quads.
+- Treat each N-Quads statement as a separate claim, encoded as its UTF-8 byte sequence.
+- Preserve the canonical statement order and the blank node label maps required to consistently identify and disclose claims during proof generation and verification.
+
+#### Example
+
+Consider an RDF dataset containing the following statements, represented in N-Quads:
+<!--
+```nquads
+<https://example.org/person/1> <https://schema.org/name> "Filip" .
+<https://example.org/person/1> <https://schema.org/addressLocality> "Prague" .
+<https://example.org/person/1> <https://schema.org/addressCountry> "Czech Republic" .
+```
+-->
+RDFC-1.0 canonicalization produces a deterministic N-Quads representation. Each resulting line, including its terminating period and required whitespace, is encoded as UTF-8 and becomes one claim:
+<!--
+```text
+0: UTF8("<https://example.org/person/1> <https://schema.org/addressCountry> \"Czech Republic\" .\n")
+1: UTF8("<https://example.org/person/1> <https://schema.org/addressLocality> \"Prague\" .\n")
+2: UTF8("<https://example.org/person/1> <https://schema.org/name> \"Filip\" .\n")
+```
+-->
+The issuer and holder apply the same canonicalization and claim-encoding rules before computing the Merkle tree and generating disclosure proofs. When selected claims are disclosed, the verifier can reconstruct the commitment using the disclosed N-Quads claims, their salts and indices, and the verification path, without receiving the undisclosed statements.
+
+> Note: Each claim is the UTF-8 encoding of one canonical N-Quads line, including its line terminator. For demonstration purposes, byte arrays may be represented as hexadecimal-encoded strings.
+
 ### Implementation Note
 
 The `ceil`, `floor`, and `log2` operations can be implemented using integer arithmetic and bitwise operations, avoiding floating-point calculations and reducing computational overhead.
