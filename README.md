@@ -248,6 +248,32 @@ JSON datasets are structured as hierarchical collections of objects and arrays. 
 
 #### Example
 
+Consider a JSON document containing three statements:
+
+```json
+{
+  "name", "Filip",
+  "city", "Prague",
+  "country", "Czech Republic"
+}
+```
+
+JCS canonicalization produces:
+
+```json
+{"city":"Prague","country":"Czech Republic","name":"Filip"}
+```
+
+The flattening rule recursively traverses objects in order of the JCS canonicalized document. Each scalar value becomes a claim encoded as the UTF-8 bytes of its JSON Pointer (RFC 6901), followed by the 0x00 separator and the UTF-8 bytes of its JCS-canonicalized value. Container values are not emitted as claims; only their descendants are included.
+
+For the example above, flattening produces:
+
+```
+UTF8("/city") || 0x00 || UTF8("\"Prague\"")
+UTF8("/country") || 0x00 || UTF8("\"Czech Republic\"")
+UTF8("/name") || 0x00 || UTF8("\"Filip\"")
+```
+
 ### Implementation Note
 
 The `ceil`, `floor`, and `log2` operations can be implemented using integer arithmetic and bitwise operations, avoiding floating-point calculations and reducing computational overhead.
