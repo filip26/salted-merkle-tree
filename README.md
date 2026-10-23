@@ -454,3 +454,26 @@ Here, `bit_length(x)` is the number of bits in the binary representation of `x`.
 ## License
 
 This work is licensed under the [Creative Commons Attribution 4.0 International (CC-BY-4.0)](https://github.com/filip26/salted-merkle-tree?tab=CC-BY-4.0-1-ov-file#) license.
+
+## References
+
+1. Rundgren, A., Jordan, B., & Erdtman, S. (2022). *JSON Canonicalization Scheme (JCS).* RFC 8785. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8785
+
+2. Longley, D., & Sporny, M. (Eds.). (2024). *RDF Dataset Canonicalization 1.0.* World Wide Web Consortium (W3C). https://www.w3.org/TR/rdf-canon/
+
+3. Bray, T. (Ed.). (2017). *The JavaScript Object Notation (JSON) Data Interchange Format.* RFC 8259. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8259
+
+4. Krawczyk, H., Bellare, M., & Canetti, R. (1997). *HMAC: Keyed-Hashing for Message Authentication.* RFC 2104. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc2104
+
+5. Jones, M., Bradley, J., & Sakimura, N. (2015). *JSON Web Signature (JWS).* RFC 7515. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc7515
+
+6. National Institute of Standards and Technology (NIST). (2015). *Secure Hash Standard (SHS).* FIPS PUB 180-4. https://doi.org/10.6028/NIST.FIPS.180-4
+
+7. Merkle, R. C. (1988). A digital signature based on a conventional encryption function. In C. Pomerance (Ed.), *Advances in Cryptology—CRYPTO ’87* (pp. 369–378). Springer. https://doi.org/10.1007/3-540-48184-2_32
+
+8. World Wide Web Consortium (W3C). (2025). *Verifiable Credential Data Integrity 1.0.* W3C Recommendation. https://www.w3.org/TR/vc-data-integrity/
+
+9. World Wide Web Consortium (W3C). (2025). *Data Integrity ECDSA Cryptosuites v1.0.* W3C Recommendation. https://www.w3.org/TR/vc-di-ecdsa/
+
+10. Laurie, B., Messeri, E., & Stradling, R. (2021). *Certificate Transparency Version 2.0.* RFC 9162. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc9162
+
