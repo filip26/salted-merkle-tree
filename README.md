@@ -210,7 +210,7 @@ Salt Generation. Generate salts for all claims, ensuring the total number of sal
 
 > Note: A unique, cryptographically random salt prevents attackers from efficiently guessing the contents of undisclosed leaves by precomputing hashes of likely values and comparing them against published hashes. This protection relies on keeping the salt secret for undisclosed leaves. The issuer and disclosing party can share a secret seed and deterministically derive each leaf's salt from its index, avoiding the need to store or transmit individual salts. When a leaf is disclosed, its salt must be revealed alongside the data so verifiers can recompute its hash.
 
-Claims Distribution. Initialize the mapping with the original claim indices and sort them by their corresponding salts in ascending lexicographic order. The resulting mapping assigns each original claim index to its leaf slot in the tree.
+Claims Distribution. Initialize the mapping with the original claim indices and sort them by their corresponding salt byte arrays in ascending order of their byte values.
 
 > Note: Distributing claims according to positions derived from HMAC of their original indices using a secret key obscures the relationship between original claim indices and their positions in the Merkle tree, making it harder to infer the original ordering of claims or identify undisclosed claims by their tree positions.
 
