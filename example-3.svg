@@ -14,14 +14,14 @@
 <title>N0</title>
 <polygon fill="none" stroke="black" points="133.75,-108 78,-108 78,-72 133.75,-72 133.75,-108"/>
 <text xml:space="preserve" text-anchor="start" x="86" y="-86.33" font-family="monospace" font-size="14.00">Leaf</text>
-<text xml:space="preserve" text-anchor="start" x="119" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">1</text>
+<text xml:space="preserve" text-anchor="start" x="119" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">0</text>
 </g>
 <!-- S0 -->
 <g id="node22" class="node">
 <title>S0</title>
 <polygon fill="lightyellow" stroke="black" points="55.75,-36 0,-36 0,0 55.75,0 55.75,-36"/>
 <text xml:space="preserve" text-anchor="start" x="8" y="-14.32" font-family="monospace" font-size="14.00">Salt</text>
-<text xml:space="preserve" text-anchor="start" x="41" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">5</text>
+<text xml:space="preserve" text-anchor="start" x="41" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">4</text>
 </g>
 <!-- N0&#45;&gt;S0 -->
 <g id="edge22" class="edge">
@@ -34,7 +34,7 @@
 <title>C0</title>
 <polygon fill="lightyellow" stroke="black" points="137.88,-36 73.88,-36 73.88,0 137.88,0 137.88,-36"/>
 <text xml:space="preserve" text-anchor="start" x="81.88" y="-14.32" font-family="monospace" font-size="14.00">Claim</text>
-<text xml:space="preserve" text-anchor="start" x="123.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">5</text>
+<text xml:space="preserve" text-anchor="start" x="123.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">4</text>
 </g>
 <!-- N0&#45;&gt;C0 -->
 <g id="edge21" class="edge">
@@ -47,14 +47,14 @@
 <title>N1</title>
 <polygon fill="none" stroke="black" points="249.75,-108 194,-108 194,-72 249.75,-72 249.75,-108"/>
 <text xml:space="preserve" text-anchor="start" x="202" y="-86.33" font-family="monospace" font-size="14.00">Leaf</text>
-<text xml:space="preserve" text-anchor="start" x="235" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">2</text>
+<text xml:space="preserve" text-anchor="start" x="235" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">1</text>
 </g>
 <!-- S1 -->
 <g id="node24" class="node">
 <title>S1</title>
 <polygon fill="#cccccc" stroke="black" points="211.75,-36 156,-36 156,0 211.75,0 211.75,-36"/>
 <text xml:space="preserve" text-anchor="start" x="164" y="-14.32" font-family="monospace" font-size="14.00">Salt</text>
-<text xml:space="preserve" text-anchor="start" x="197" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">6</text>
+<text xml:space="preserve" text-anchor="start" x="197" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">5</text>
 </g>
 <!-- N1&#45;&gt;S1 -->
 <g id="edge24" class="edge">
@@ -79,14 +79,14 @@
 <title>N2</title>
 <polygon fill="none" stroke="black" points="439.75,-108 384,-108 384,-72 439.75,-72 439.75,-108"/>
 <text xml:space="preserve" text-anchor="start" x="392" y="-86.33" font-family="monospace" font-size="14.00">Leaf</text>
-<text xml:space="preserve" text-anchor="start" x="425" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">3</text>
+<text xml:space="preserve" text-anchor="start" x="425" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">2</text>
 </g>
 <!-- S2 -->
 <g id="node20" class="node">
 <title>S2</title>
 <polygon fill="palegreen" stroke="black" points="361.75,-36 306,-36 306,0 361.75,0 361.75,-36"/>
 <text xml:space="preserve" text-anchor="start" x="314" y="-14.32" font-family="monospace" font-size="14.00">Salt</text>
-<text xml:space="preserve" text-anchor="start" x="347" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">4</text>
+<text xml:space="preserve" text-anchor="start" x="347" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">3</text>
 </g>
 <!-- N2&#45;&gt;S2 -->
 <g id="edge20" class="edge">
@@ -99,7 +99,7 @@
 <title>C2</title>
 <polygon fill="palegreen" stroke="black" points="443.88,-36 379.88,-36 379.88,0 443.88,0 443.88,-36"/>
 <text xml:space="preserve" text-anchor="start" x="387.88" y="-14.32" font-family="monospace" font-size="14.00">Claim</text>
-<text xml:space="preserve" text-anchor="start" x="429.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">4</text>
+<text xml:space="preserve" text-anchor="start" x="429.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">3</text>
 </g>
 <!-- N2&#45;&gt;C2 -->
 <g id="edge19" class="edge">
@@ -112,14 +112,14 @@
 <title>N3</title>
 <polygon fill="none" stroke="black" points="517.75,-108 462,-108 462,-72 517.75,-72 517.75,-108"/>
 <text xml:space="preserve" text-anchor="start" x="470" y="-86.33" font-family="monospace" font-size="14.00">Leaf</text>
-<text xml:space="preserve" text-anchor="start" x="503" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">4</text>
+<text xml:space="preserve" text-anchor="start" x="503" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">3</text>
 </g>
 <!-- S3 -->
 <g id="node18" class="node">
 <title>S3</title>
 <polygon fill="palegreen" stroke="black" points="517.75,-36 462,-36 462,0 517.75,0 517.75,-36"/>
 <text xml:space="preserve" text-anchor="start" x="470" y="-14.32" font-family="monospace" font-size="14.00">Salt</text>
-<text xml:space="preserve" text-anchor="start" x="503" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">3</text>
+<text xml:space="preserve" text-anchor="start" x="503" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">2</text>
 </g>
 <!-- N3&#45;&gt;S3 -->
 <g id="edge18" class="edge">
@@ -132,7 +132,7 @@
 <title>C3</title>
 <polygon fill="palegreen" stroke="black" points="599.88,-36 535.88,-36 535.88,0 599.88,0 599.88,-36"/>
 <text xml:space="preserve" text-anchor="start" x="543.88" y="-14.32" font-family="monospace" font-size="14.00">Claim</text>
-<text xml:space="preserve" text-anchor="start" x="585.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">3</text>
+<text xml:space="preserve" text-anchor="start" x="585.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">2</text>
 </g>
 <!-- N3&#45;&gt;C3 -->
 <g id="edge17" class="edge">
@@ -145,14 +145,14 @@
 <title>N4</title>
 <polygon fill="none" stroke="black" points="712.75,-108 657,-108 657,-72 712.75,-72 712.75,-108"/>
 <text xml:space="preserve" text-anchor="start" x="665" y="-86.33" font-family="monospace" font-size="14.00">Leaf</text>
-<text xml:space="preserve" text-anchor="start" x="698" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">5</text>
+<text xml:space="preserve" text-anchor="start" x="698" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">4</text>
 </g>
 <!-- S4 -->
 <g id="node16" class="node">
 <title>S4</title>
 <polygon fill="lightyellow" stroke="black" points="673.75,-36 618,-36 618,0 673.75,0 673.75,-36"/>
 <text xml:space="preserve" text-anchor="start" x="626" y="-14.32" font-family="monospace" font-size="14.00">Salt</text>
-<text xml:space="preserve" text-anchor="start" x="659" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">2</text>
+<text xml:space="preserve" text-anchor="start" x="659" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">1</text>
 </g>
 <!-- N4&#45;&gt;S4 -->
 <g id="edge16" class="edge">
@@ -165,7 +165,7 @@
 <title>C4</title>
 <polygon fill="lightyellow" stroke="black" points="755.88,-36 691.88,-36 691.88,0 755.88,0 755.88,-36"/>
 <text xml:space="preserve" text-anchor="start" x="699.88" y="-14.32" font-family="monospace" font-size="14.00">Claim</text>
-<text xml:space="preserve" text-anchor="start" x="741.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">2</text>
+<text xml:space="preserve" text-anchor="start" x="741.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">1</text>
 </g>
 <!-- N4&#45;&gt;C4 -->
 <g id="edge15" class="edge">
@@ -178,14 +178,14 @@
 <title>N5</title>
 <polygon fill="none" stroke="black" points="829.75,-108 774,-108 774,-72 829.75,-72 829.75,-108"/>
 <text xml:space="preserve" text-anchor="start" x="782" y="-86.33" font-family="monospace" font-size="14.00">Leaf</text>
-<text xml:space="preserve" text-anchor="start" x="815" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">6</text>
+<text xml:space="preserve" text-anchor="start" x="815" y="-86.33" font-family="monospace" baseline-shift="sub" font-size="14.00">5</text>
 </g>
 <!-- S5 -->
 <g id="node14" class="node">
 <title>S5</title>
 <polygon fill="lightyellow" stroke="black" points="829.75,-36 774,-36 774,0 829.75,0 829.75,-36"/>
 <text xml:space="preserve" text-anchor="start" x="782" y="-14.32" font-family="monospace" font-size="14.00">Salt</text>
-<text xml:space="preserve" text-anchor="start" x="815" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">1</text>
+<text xml:space="preserve" text-anchor="start" x="815" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">0</text>
 </g>
 <!-- N5&#45;&gt;S5 -->
 <g id="edge14" class="edge">
@@ -198,7 +198,7 @@
 <title>C5</title>
 <polygon fill="lightyellow" stroke="black" points="911.88,-36 847.88,-36 847.88,0 911.88,0 911.88,-36"/>
 <text xml:space="preserve" text-anchor="start" x="855.88" y="-14.32" font-family="monospace" font-size="14.00">Claim</text>
-<text xml:space="preserve" text-anchor="start" x="897.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">1</text>
+<text xml:space="preserve" text-anchor="start" x="897.12" y="-14.32" font-family="monospace" baseline-shift="sub" font-size="14.00">0</text>
 </g>
 <!-- N5&#45;&gt;C5 -->
 <g id="edge13" class="edge">
@@ -210,7 +210,7 @@
 <g id="node7" class="node">
 <title>N6</title>
 <polygon fill="lightsalmon" stroke="black" points="262.88,-180 180.88,-180 180.88,-144 262.88,-144 262.88,-180"/>
-<text xml:space="preserve" text-anchor="middle" x="221.88" y="-157.32" font-family="monospace" font-size="14.00">Node 1:2</text>
+<text xml:space="preserve" text-anchor="middle" x="221.88" y="-157.32" font-family="monospace" font-size="14.00">Node 0:1</text>
 </g>
 <!-- N6&#45;&gt;N0 -->
 <g id="edge1" class="edge">
@@ -228,7 +228,7 @@
 <g id="node8" class="node">
 <title>N7</title>
 <polygon fill="none" stroke="black" points="491.88,-180 409.88,-180 409.88,-144 491.88,-144 491.88,-180"/>
-<text xml:space="preserve" text-anchor="middle" x="450.88" y="-157.32" font-family="monospace" font-size="14.00">Node 3:4</text>
+<text xml:space="preserve" text-anchor="middle" x="450.88" y="-157.32" font-family="monospace" font-size="14.00">Node 2:3</text>
 </g>
 <!-- N7&#45;&gt;N2 -->
 <g id="edge3" class="edge">
@@ -246,7 +246,7 @@
 <g id="node9" class="node">
 <title>N8</title>
 <polygon fill="none" stroke="black" points="725.88,-180 643.88,-180 643.88,-144 725.88,-144 725.88,-180"/>
-<text xml:space="preserve" text-anchor="middle" x="684.88" y="-157.32" font-family="monospace" font-size="14.00">Node 5:6</text>
+<text xml:space="preserve" text-anchor="middle" x="684.88" y="-157.32" font-family="monospace" font-size="14.00">Node 4:5</text>
 </g>
 <!-- N8&#45;&gt;N4 -->
 <g id="edge5" class="edge">
@@ -272,7 +272,7 @@
 <g id="node11" class="node">
 <title>N12</title>
 <polygon fill="none" stroke="black" points="491.88,-252 409.88,-252 409.88,-216 491.88,-216 491.88,-252"/>
-<text xml:space="preserve" text-anchor="middle" x="450.88" y="-229.32" font-family="monospace" font-size="14.00">Node 1:4</text>
+<text xml:space="preserve" text-anchor="middle" x="450.88" y="-229.32" font-family="monospace" font-size="14.00">Node 0:3</text>
 </g>
 <!-- N12&#45;&gt;N6 -->
 <g id="edge7" class="edge">
@@ -290,7 +290,7 @@
 <g id="node12" class="node">
 <title>N13</title>
 <polygon fill="lightsalmon" stroke="black" points="725.88,-252 643.88,-252 643.88,-216 725.88,-216 725.88,-252"/>
-<text xml:space="preserve" text-anchor="middle" x="684.88" y="-229.32" font-family="monospace" font-size="14.00">Node 5:8</text>
+<text xml:space="preserve" text-anchor="middle" x="684.88" y="-229.32" font-family="monospace" font-size="14.00">Node 4:7</text>
 </g>
 <!-- N13&#45;&gt;N8 -->
 <g id="edge9" class="edge">
@@ -308,7 +308,7 @@
 <g id="node13" class="node">
 <title>N18</title>
 <polygon fill="#ffec8b" stroke="black" points="608.88,-324 526.88,-324 526.88,-288 608.88,-288 608.88,-324"/>
-<text xml:space="preserve" text-anchor="start" x="534.88" y="-301.32" font-family="monospace" font-size="14.00">Root 1:6</text>
+<text xml:space="preserve" text-anchor="start" x="534.88" y="-301.32" font-family="monospace" font-size="14.00">Root 0:7</text>
 </g>
 <!-- N18&#45;&gt;N12 -->
 <g id="edge11" class="edge">
