@@ -82,7 +82,7 @@ An entity that acts as a verifier in a selective disclosure protocol, responsibl
 
 ### Example
 
-The example shows a tree with 11 claims, padded to an even number, i.e., 12 leaves. The underlying claims for leaves 1, 2, 8, and 11 are disclosed, while the remaining claims stay private. The verification path include the hashes for leaves 7 and 12, nodes 3:4, 5:6, 9:10 and P2 (depth-based padding level 2), allowing the verifier to reconstruct and verify the root.
+The example shows a tree with 11 claims, padded to an even number, i.e., 12 leaves. The underlying claims for leaves `0`, `1`, `5`, and `9` are disclosed, while the remaining claims stay private. The verification path include the hashes for leaves `8` and `10`, nodes `6:7`, `0:3`, and `P2` (depth-based padding level 2), allowing the verifier to reconstruct and verify the root.
 
 ![Example #1](example-1.svg)
 
@@ -306,7 +306,7 @@ The figure below shows the complete Merkle tree constructed by the issuer and ho
 
 ![Example #2](example-2.svg)
 
-Assume the holder selects claims at original indices `0` and `1` for disclosure. Claim indices in the examples are zero-based, while claims in the diagram are numbered from `1`; therefore, the selected claims correspond to claims `1` and `2` in the diagram.
+Assume the holder selects claims at original indices `0` and `1` for disclosure.
 
 Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
 
@@ -402,7 +402,7 @@ The figure below shows the complete Merkle tree constructed by the issuer and ho
 
 ![Example #3](example-3.svg)
 
-Assume the holder selects claims at original indices `2` and `3` for disclosure. Claim indices in the examples are zero-based, while claims in the diagram are numbered from `1`; therefore, the selected claims correspond to claims `3` and `4` in the diagram.
+Assume the holder selects claims at original indices `2` and `3` for disclosure.
 
 Applying the verification path generation algorithm produces the following proof data, which the holder sends to the verifier alongside the disclosed dataset and the issuer's signed root:
 
