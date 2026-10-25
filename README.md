@@ -226,13 +226,13 @@ Level Padding. For a missing sibling at tree `level > 0`, derive the padding has
 
 > Note: Domain separation prefixes for salt generation, leaf hashing, internal node computation, and level padding ensure that inputs from different structural contexts remain strictly separated, preventing hash collisions, type-confusion attacks, or second-preimage vulnerabilities between different node types and derivation steps.
 
-### Mandatory Claims
+## Mandatory Claims
 
 Mandatory claims must always be disclosed to the verifier. Processing them as selectively disclosable claims with disclosure always enabled is computationally inefficient; they require a separate algorithm.
 
 Datasets containing both mandatory and optional claims should be split into two parts: one processed by the mandatory-claims algorithm and the other by the selective-disclosure algorithm.
 
-i.e. A combined tree with two child hashes, one for the mandatory claims and one for the selective-disclosure root, allows a single commitment to cover both while keeping the algorithms separate.
+e.g., A combined tree with two child hashes, one for the mandatory claims and one for the selective-disclosure root, allows a single commitment to cover both while keeping the algorithms separate.
 
 ## Security Considerations
 
