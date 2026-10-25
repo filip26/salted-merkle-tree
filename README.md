@@ -495,5 +495,3 @@ This work is licensed under the [Creative Commons Attribution 4.0 International 
 - **[RFC9162]**  
     Laurie, B., Messeri, E., & Stradling, R. (2021). *Certificate Transparency Version 2.0.* RFC 9162. Internet Engineering Task Force (IETF).  
     [https://www.rfc-editor.org/rfc/rfc9162](https://www.rfc-editor.org/rfc/rfc9162)
-## Commitment Semantics and Context
-
