@@ -459,12 +459,39 @@ This work is licensed under the [Creative Commons Attribution 4.0 International 
 
 ## References
 
-- [MERKLE-1988] Merkle, R. C. (1988). A digital signature based on a conventional encryption function. In C. Pomerance (Ed.), *Advances in Cryptology—CRYPTO ’87* (pp. 369–378). Springer. https://doi.org/10.1007/3-540-48184-2_32
-- [FIPS-180-4] National Institute of Standards and Technology (NIST). (2015). *Secure Hash Standard (SHS).* FIPS PUB 180-4. https://doi.org/10.6028/NIST.FIPS.180-4
-- [RFC2104] Krawczyk, H., Bellare, M., & Canetti, R. (1997). *HMAC: Keyed-Hashing for Message Authentication.* RFC 2104. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc2104
-- [RFC8785] Rundgren, A., Jordan, B., & Erdtman, S. (2022). *JSON Canonicalization Scheme (JCS).* RFC 8785. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8785
-- [RDFC-1.0] Longley, D., & Sporny, M. (Eds.). (2024). *RDF Dataset Canonicalization 1.0.* World Wide Web Consortium (W3C). https://www.w3.org/TR/rdf-canon/
-- [RFC8259] Bray, T. (Ed.). (2017). *The JavaScript Object Notation (JSON) Data Interchange Format.* RFC 8259. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8259
-- [VC-DI-1.0] Sporny, M., Longley, D., & Chadwick, D. (Eds.). (2025). *Verifiable Credential Data Integrity 1.0.* W3C Recommendation. https://www.w3.org/TR/vc-data-integrity/
-- [VC-DI-ECDSA-1.0] Sporny, M., Longley, D., & Chadwick, D. (Eds.). (2025). *Data Integrity ECDSA Cryptosuites v1.0.* W3C Recommendation. https://www.w3.org/TR/vc-di-ecdsa/
-- [RFC9162] Laurie, B., Messeri, E., & Stradling, R. (2021). *Certificate Transparency Version 2.0.* RFC 9162. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc9162
+- **[MERKLE-1988]**  
+    Merkle, R. C. (1988). A digital signature based on a conventional encryption function.  
+    In C. Pomerance (Ed.), *Advances in Cryptology—CRYPTO ’87* (pp. 369–378). Springer.  
+    [https://doi.org/10.1007/3-540-48184-2_32](https://doi.org/10.1007/3-540-48184-2_32)
+
+- **[FIPS-180-4]**  
+    National Institute of Standards and Technology (NIST). (2015). *Secure Hash Standard (SHS).* FIPS PUB 180-4.  
+    [https://doi.org/10.6028/NIST.FIPS.180-4](https://doi.org/10.6028/NIST.FIPS.180-4)
+
+- **[RFC2104]**  
+    Krawczyk, H., Bellare, R., & Canetti, R. (1997). *HMAC: Keyed-Hashing for Message Authentication.* RFC 2104. Internet Engineering Task Force (IETF).  
+    [https://www.rfc-editor.org/rfc/rfc2104](https://www.rfc-editor.org/rfc/rfc2104)
+
+- **[RFC8785]**  
+    Rundgren, A., Jordan, B., & Erdtman, S. (2022). *JSON Canonicalization Scheme (JCS).* RFC 8785. Internet Engineering Task Force (IETF).  
+    [https://www.rfc-editor.org/rfc/rfc8785](https://www.rfc-editor.org/rfc/rfc8785)
+
+- **[RDFC-1.0]**  
+    Longley, D., & Sporny, M. (Eds.). (2024). *RDF Dataset Canonicalization 1.0.* World Wide Web Consortium (W3C).  
+    [https://www.w3.org/TR/rdf-canon/](https://www.w3.org/TR/rdf-canon/)
+
+- **[RFC8259]**  
+    Bray, T. (Ed.). (2017). *The JavaScript Object Notation (JSON) Data Interchange Format.* RFC 8259. Internet Engineering Task Force (IETF).  
+    [https://www.rfc-editor.org/rfc/rfc8259](https://www.rfc-editor.org/rfc/rfc8259)
+
+- **[VC-DI-1.0]**  
+    Sporny, M., Longley, D., & Chadwick, D. (Eds.). (2025). *Verifiable Credential Data Integrity 1.0.* World Wide Web Consortium (W3C).  
+    [https://www.w3.org/TR/vc-data-integrity/](https://www.w3.org/TR/vc-data-integrity/)
+
+- **[VC-DI-ECDSA-1.0]**  
+    Sporny, M., Longley, D., & Chadwick, D. (Eds.). (2025). *Data Integrity ECDSA Cryptosuites v1.0.* World Wide Web Consortium (W3C).  
+    [https://www.w3.org/TR/vc-di-ecdsa/](https://www.w3.org/TR/vc-di-ecdsa/)
+
+- **[RFC9162]**  
+    Laurie, B., Messeri, E., & Stradling, R. (2021). *Certificate Transparency Version 2.0.* RFC 9162. Internet Engineering Task Force (IETF).  
+    [https://www.rfc-editor.org/rfc/rfc9162](https://www.rfc-editor.org/rfc/rfc9162)
