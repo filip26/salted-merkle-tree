@@ -226,7 +226,7 @@ Level Padding. For a missing sibling at tree `level > 0`, derive the padding has
 
 ### Mandatory Claims
 
-The design focuses on selective disclosure of individual claims. Requiring certain claims to be disclosed in every presentation introduces an additional policy requirement that is not fully specified here. Mandatory-claim enforcement is therefore outside the scope of this version and may be addressed in a future extension.
+Mandatory claims must always be disclosed to the verifier. Processing them as selectively disclosable claims with disclosure always enabled is computationally inefficient; they require a separate algorithm.
 
 Datasets containing both mandatory and optional claims should be split into two parts: one processed by the mandatory-claims algorithm and the other by the selective-disclosure algorithm.
 
@@ -495,3 +495,5 @@ This work is licensed under the [Creative Commons Attribution 4.0 International 
 - **[RFC9162]**  
     Laurie, B., Messeri, E., & Stradling, R. (2021). *Certificate Transparency Version 2.0.* RFC 9162. Internet Engineering Task Force (IETF).  
     [https://www.rfc-editor.org/rfc/rfc9162](https://www.rfc-editor.org/rfc/rfc9162)
+## Commitment Semantics and Context
+
