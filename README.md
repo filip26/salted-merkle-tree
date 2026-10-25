@@ -246,11 +246,11 @@ Verifiers should enforce configurable limits on the number of disclosed claims, 
 
 ### JSON Dataset
 
-JSON datasets are structured as hierarchical collections of objects and arrays. The syntax follows the JSON Data Interchange Format [RFC8259], while deterministic serialization uses the JSON Canonicalization Scheme [RFC8785]. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values, while canonicalization ensures deterministic encoding independent of superficial serialization differences.
+JSON datasets are structured as hierarchical collections of objects and arrays. The syntax follows the JSON Data Interchange Format [RFC8259], while deterministic serialization uses the JSON Canonicalization Scheme (JCS) [RFC8785]. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values, while canonicalization ensures deterministic encoding independent of superficial serialization differences.
 
-- Canonicalize the dataset using the JSON Canonicalization Scheme (JCS, RFC 8785).
+- Canonicalize the dataset using the JSON Canonicalization Scheme (JCS) [RFC8785].
 - Flatten the canonicalized JSON into an ordered sequence of claims, one per JSON value at a defined JSON Pointer.
-- Encode each claim as: `UTF8(JSONPointer) || 0x00 || JCS(value)` where `JSONPointer` follows RFC 6901, `UTF8` encodes the pointer as UTF-8, `0x00` is a separator, and `value` is the UTF-8 encoding of the value serialized according to JCS.
+- Encode each claim as: `UTF8(JSONPointer) || 0x00 || JCS(value)` where `JSONPointer` follows [RFC6901], `UTF8` encodes the pointer as UTF-8, `0x00` is a separator, and `value` is the UTF-8 encoding of the value serialized according to JCS.
 - Preserve a deterministic ordering of claims to ensure consistent commitment generation and verification.
 
 #### Example
@@ -271,7 +271,7 @@ JCS canonicalization produces:
 {"city":"Prague","country":"Czech Republic","name":"Filip"}
 ```
 
-The flattening rule recursively traverses objects in order of the JCS canonicalized document. Each scalar value becomes a claim encoded as the UTF-8 bytes of its JSON Pointer (RFC 6901), followed by the 0x00 separator and the UTF-8 bytes of its JCS canonicalized value. Container values are not emitted as claims; only their descendants are included.
+The flattening rule recursively traverses objects in order of the JCS canonicalized document. Each scalar value becomes a claim encoded as the UTF-8 bytes of its JSON Pointer [RFC6901], followed by the 0x00 separator and the UTF-8 bytes of its JCS canonicalized value. Container values are not emitted as claims; only their descendants are included.
 
 For the example above, flattening produces three claims, each represented as a byte array:
 
@@ -475,6 +475,10 @@ This work is licensed under the [Creative Commons Attribution 4.0 International 
 - **[RFC8785]**  
     Rundgren, A., Jordan, B., & Erdtman, S. (2022). *JSON Canonicalization Scheme (JCS).* RFC 8785. Internet Engineering Task Force (IETF).  
     [https://www.rfc-editor.org/rfc/rfc8785](https://www.rfc-editor.org/rfc/rfc8785)
+
+- **[RFC6901]**  
+    Bryan, P., & Zyp, K. (Eds.). (2013). *JavaScript Object Notation (JSON) Pointer.* RFC 6901. Internet Engineering Task Force (IETF).  
+    [https://www.rfc-editor.org/rfc/rfc6901](https://www.rfc-editor.org/rfc/rfc6901)
 
 - **[RDFC-1.0]**  
     Longley, D., & Sporny, M. (Eds.). (2024). *RDF Dataset Canonicalization 1.0.* World Wide Web Consortium (W3C).  
