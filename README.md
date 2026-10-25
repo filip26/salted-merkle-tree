@@ -132,13 +132,13 @@ These bounds assume fixed-size hash outputs and constant-time hash operations.
 1. Compute the tree depth as `depth = ceil(log2(n))`.
 2. Set the current `level_size` to `n`.
 3. For each `level` from `0` to `depth - 1`:
-   1. Process the current level in adjacent pairs, from left to right, using `level_size`.
+   1. Process the current level in adjacent pairs, from left to right, using `level_size` to determine the number of nodes.
    2. If the final node has no right sibling, use the depth-based padding hash for the current `level` as its right sibling and increment the current `level_size` to account for the padded node.
    3. For each pair where `i` is the index of the left child:
-      1. If the left child is not set and the right child is present, append the right child to the verification path and unset the parent entry at index `floor(i / 2)`.
-      2. If the right child is not set and the left child is present, append the left child to the verification path and unset the parent entry at index `floor(i / 2)`.
-      3. If the left child is present and the right child is present, compute the parent hash as `H(0x01 || left || right)` and store it at index `floor(i / 2)`.
-      4. Otherwise, unset the parent entry at index `floor(i / 2)`.
+      1. If the left child is not set and the right child is present, append the right child to the verification path.
+      2. If the left child is present and the right child is not set, append the left child to the verification path.
+      3. If the left and right childs are present, compute the parent hash as `H(0x01 || left || right)`.
+      4. Store the computed parent hash at index `floor(i / 2)` if both children are present; otherwise, unset the parent entry at that index.
    4. Update the current `level_size` to `ceil(level_size / 2)`.
 4. Return the verification path hashes.
 
