@@ -42,7 +42,9 @@ Conceptual separation among the Issuer, Holder, and Verifier isolates trust doma
 
 ### Issuer
 
-An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension M via a keyed pseudorandom slot-distribution function, computing a salted Merkle tree root, and generating a digital signature over the root. HMAC is used for keyed derivation and slot distribution [RFC2104], while the signature step follows the general digital-signature model. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
+An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension `M` via a keyed pseudorandom slot-distribution function, computing a salted Merkle tree root, and generating a digital signature over the root. 
+
+HMAC is used for keyed derivation and slot distribution [RFC2104], while the signature step follows the general digital-signature model. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
 
 - Canonicalize and flattens the dataset into an ordered list of claims.
 - Distributes the claims across an array of size `M` using the secret-keyed HMAC slot-distribution algorithm. Generates HMAC secret key `K`.
