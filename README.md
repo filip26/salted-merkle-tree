@@ -5,7 +5,7 @@
 
 A Salted Merkle tree is a cryptographic commitment structure. Selective disclosure is achieved by revealing only the targeted leaf nodes data and their corresponding verification path while keeping undisclosed claims private. It enables a verifier to validate disclosed claims against a single Merkle root. The design prioritizes security, privacy, and computational efficiency.
 
-The tree is binary and balanced, using unique padding hashes to handle missing siblings without explicitly constructing or storing all padding nodes. This reduces the space and computational overhead associated with materializing a fully padded tree. Each leaf hash is salted to prevent offline dictionary attacks against the underlying claims.
+The tree is binary and balanced, using unique padding hashes to handle missing siblings without explicitly constructing or storing all padding nodes. This reduces the space and computational overhead associated with materializing a fully padded tree. Each leaf hash is salted to prevent offline dictionary attacks against the underlying claims. Merkle trees provide the underlying hash-tree commitment structure [MERKLE-1988], while the security of the hash operations depends on the selected hash function [FIPS-180-4].
 
 For `n` leaves, root computation takes `O(n)` time and `O(n)` space, while the tree depth is `O(log n)`. Verification path generation takes `O(n)` time and `O(n)` space. An individual verification path contains `O(log n)` hashes. For `m` disclosed claims, root reconstruction takes `O(m log m + p)` time, where `p` is the number of hashes in the verification path, and `O(m)` space, excluding the input claims, salts, indices, and path. When multiple leaves are disclosed, their verification paths can share common nodes, reducing the total proof size.
 
@@ -31,7 +31,8 @@ Any dataset that supports a deterministic, unidirectional mapping between its na
 
 A claim is an atomic, canonicalized unit of information derived from a dataset that can be independently represented, committed to, and selectively disclosed. Each claim is encoded in a deterministic canonical form so that equivalent claims produce identical representations.
 
-> Note: This document specifies algorithms for datasets represented as JSON, JSON-LD, and RDF (N-Quads). See _Appendix_.
+> Note: This document covers algorithms for datasets represented as JSON, JSON-LD, and RDF (N-Quads). JSON syntax is defined by RFC 8259 [RFC8259], JSON canonicalization by RFC 8785 [RFC8785], and RDF dataset canonicalization by RDFC-1.0 [RDFC-1.0]. See _Appendix_.
+
 
 ## Actors
 
@@ -41,7 +42,7 @@ Conceptual separation among the Issuer, Holder, and Verifier isolates trust doma
 
 ### Issuer
 
-An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension M via a keyed pseudorandom slot-distribution function, computing a salted Merkle tree root, and generating a digital signature over the root. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
+An entity that instantiates a cryptographic commitment scheme over a dataset by serializing claims into a canonical sequence, mapping them to a sparse vector of dimension M via a keyed pseudorandom slot-distribution function, computing a salted Merkle tree root, and generating a digital signature over the root. HMAC is used for keyed derivation and slot distribution [RFC2104], while the signature step follows the general digital-signature model. The Issuer transmits the signed root, verification key, HMAC secret key `K`, leaves dimension `M`, and dataset to the Holder.
 
 - Canonicalize and flattens the dataset into an ordered list of claims.
 - Distributes the claims across an array of size `M` using the secret-keyed HMAC slot-distribution algorithm. Generates HMAC secret key `K`.
@@ -245,7 +246,7 @@ Verifiers should enforce configurable limits on the number of disclosed claims, 
 
 ### JSON Dataset
 
-JSON datasets are structured as hierarchical collections of objects and arrays. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values, while canonicalization ensures deterministic encoding independent of superficial serialization differences.
+JSON datasets are structured as hierarchical collections of objects and arrays. The syntax follows the JSON Data Interchange Format [RFC8259], while deterministic serialization uses the JSON Canonicalization Scheme [RFC8785]. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values, while canonicalization ensures deterministic encoding independent of superficial serialization differences.
 
 - Canonicalize the dataset using the JSON Canonicalization Scheme (JCS, RFC 8785).
 - Flatten the canonicalized JSON into an ordered sequence of claims, one per JSON value at a defined JSON Pointer.
@@ -334,7 +335,7 @@ The verifier uses the disclosed claims, their salts and indices, the verificatio
 
 ### RDF Dataset
 
-RDF datasets represent information as RDF statements, each consisting of a subject, predicate, object, and graph name. Selective disclosure treats each statement as an independently committable claim. 
+RDF datasets represent information as RDF statements, each consisting of a subject, predicate, object, and graph name. The canonicalization procedure follows the W3C RDF Dataset Canonicalization 1.0 specification [RDFC-1.0]. Selective disclosure treats each statement as an independently committable claim. 
 
 - Canonicalize the RDF dataset using RDF Dataset Canonicalization (RDFC-1.0), preserving the mapping between original blank node identifiers and their canonical identifiers.
 - Relabel the canonical blank node identifiers using HMAC with the one-time key (OTK), preserving the mapping between canonical blank node identifiers and their HMAC-derived labels.
@@ -458,23 +459,12 @@ This work is licensed under the [Creative Commons Attribution 4.0 International 
 
 ## References
 
-1. Rundgren, A., Jordan, B., & Erdtman, S. (2022). *JSON Canonicalization Scheme (JCS).* RFC 8785. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8785
-
-2. Longley, D., & Sporny, M. (Eds.). (2024). *RDF Dataset Canonicalization 1.0.* World Wide Web Consortium (W3C). https://www.w3.org/TR/rdf-canon/
-
-3. Bray, T. (Ed.). (2017). *The JavaScript Object Notation (JSON) Data Interchange Format.* RFC 8259. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8259
-
-4. Krawczyk, H., Bellare, M., & Canetti, R. (1997). *HMAC: Keyed-Hashing for Message Authentication.* RFC 2104. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc2104
-
-5. Jones, M., Bradley, J., & Sakimura, N. (2015). *JSON Web Signature (JWS).* RFC 7515. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc7515
-
-6. National Institute of Standards and Technology (NIST). (2015). *Secure Hash Standard (SHS).* FIPS PUB 180-4. https://doi.org/10.6028/NIST.FIPS.180-4
-
-7. Merkle, R. C. (1988). A digital signature based on a conventional encryption function. In C. Pomerance (Ed.), *Advances in Cryptology—CRYPTO ’87* (pp. 369–378). Springer. https://doi.org/10.1007/3-540-48184-2_32
-
-8. World Wide Web Consortium (W3C). (2025). *Verifiable Credential Data Integrity 1.0.* W3C Recommendation. https://www.w3.org/TR/vc-data-integrity/
-
-9. World Wide Web Consortium (W3C). (2025). *Data Integrity ECDSA Cryptosuites v1.0.* W3C Recommendation. https://www.w3.org/TR/vc-di-ecdsa/
-
-10. Laurie, B., Messeri, E., & Stradling, R. (2021). *Certificate Transparency Version 2.0.* RFC 9162. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc9162
-
+- [MERKLE-1988] Merkle, R. C. (1988). A digital signature based on a conventional encryption function. In C. Pomerance (Ed.), *Advances in Cryptology—CRYPTO ’87* (pp. 369–378). Springer. https://doi.org/10.1007/3-540-48184-2_32
+- [FIPS-180-4] National Institute of Standards and Technology (NIST). (2015). *Secure Hash Standard (SHS).* FIPS PUB 180-4. https://doi.org/10.6028/NIST.FIPS.180-4
+- [RFC2104] Krawczyk, H., Bellare, M., & Canetti, R. (1997). *HMAC: Keyed-Hashing for Message Authentication.* RFC 2104. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc2104
+- [RFC8785] Rundgren, A., Jordan, B., & Erdtman, S. (2022). *JSON Canonicalization Scheme (JCS).* RFC 8785. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8785
+- [RDFC-1.0] Longley, D., & Sporny, M. (Eds.). (2024). *RDF Dataset Canonicalization 1.0.* World Wide Web Consortium (W3C). https://www.w3.org/TR/rdf-canon/
+- [RFC8259] Bray, T. (Ed.). (2017). *The JavaScript Object Notation (JSON) Data Interchange Format.* RFC 8259. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc8259
+- [VC-DI-1.0] Sporny, M., Longley, D., & Chadwick, D. (Eds.). (2025). *Verifiable Credential Data Integrity 1.0.* W3C Recommendation. https://www.w3.org/TR/vc-data-integrity/
+- [VC-DI-ECDSA-1.0] Sporny, M., Longley, D., & Chadwick, D. (Eds.). (2025). *Data Integrity ECDSA Cryptosuites v1.0.* W3C Recommendation. https://www.w3.org/TR/vc-di-ecdsa/
+- [RFC9162] Laurie, B., Messeri, E., & Stradling, R. (2021). *Certificate Transparency Version 2.0.* RFC 9162. Internet Engineering Task Force (IETF). https://www.rfc-editor.org/rfc/rfc9162
