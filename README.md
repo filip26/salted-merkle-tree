@@ -165,15 +165,16 @@ These bounds assume fixed-size hash outputs, constant-time hash operations.
 3. For each disclosed claim, compute its leaf hash as `H(0x00 || salt || claim)` and store it in `buffer`. Update the corresponding `mapping` entry to the claim's original leaf index.
 4. While `level_size > 1` or unconsumed verification path hashes remain:
    1. Set `next_level_size = 0`.
-   2. Process the current level from left to right, using the mapping to determine each node's position.
+   2. Process the current level from left to right, using the `mapping` to determine each node's position.
    3. For each node at position `node_index`:
-      1. If `node_index` is odd, consume the next verification path hash as the left sibling, use the current buffer entry as the right child, and compute the parent hash as `H(0x01 || left || right)`.
-      2. Otherwise, if the right node is present and its mapping entry equals `node_index + 1`, compute the parent hash from the current node and the next node as `H(0x01 || left || right)`, and advance iterator past both children.
-      3. Otherwise, consume the next verification path hash as the right sibling, use the current entry as the left child, and compute the parent hash as `H(0x01 || left || right)`.
-      4. Store the parent hash at index `next_level_size` in the `buffer` and store `floor(node_index / 2)` at the corresponding mapping entry.
-      5. Increment `next_level_size`.
+      1. If `node_index` is odd, consume the next verification path hash as the `left` sibling, use the current buffer entry as the `right` child.
+      2. Otherwise, if the right node is present and its mapping entry equals `node_index + 1`, use the current node and the next node as the `left` and `right` children, respectively, and advance the iterator past both children.
+      3. Otherwise, consume the next verification path hash as the `right` sibling and use the current buffer entry as the `left` child.
+      4. Compute the `parent_hash` as `H(0x01 || left || right)`.
+      5. Store the `parent_hash` at index `next_level_size` in the `buffer` and store `floor(node_index / 2)` at the corresponding mapping entry.
+      6. Increment `next_level_size`.
    4. Set `level_size` to `next_level_size`.
-5. Return `buffer[0]` as the reconstructed root.
+5. Return the hash at index zero as the root.
 
 The algorithm sorts disclosed claims by their original leaf indices and reconstructs successive tree levels in place using `buffer` and `mapping` arrays sized to the number of disclosed claims, consuming verification path hashes only when a sibling is not among the disclosed nodes being processed.
 
