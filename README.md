@@ -442,9 +442,8 @@ The `ceil`, `floor`, and `log2` operations can be implemented using integer arit
 | Operation                    | Integer/bitwise equivalent                |
 | ---------------------------- | ----------------------------------------- |
 | `ceil(log2(n))`, `n > 1`     | `bit_length(n - 1)`                       |
-| `floor(n / 2)`               | `n >>> 1` in Java                         |
 | `floor(n / 2)`, `n >= 0`     | `n >>> 1` in Java, JavaScript, and TypeScript |
-| `ceil(n / 2)`                | `(n + 1) >>> 1` for non-negative integers |
+| `ceil(n / 2)`, `n >= 0`      | `(n + 1) >>> 1`                           |
 | `2 ^ n`                      | `1 << n`                                  |
 | `2 * ceil(n / 2)`            | `n + (n & 1)`                             |
 | `n * 2`                      | `n << 1`                                  | 
