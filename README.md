@@ -441,15 +441,16 @@ The `ceil`, `floor`, and `log2` operations can be implemented using integer arit
 
 | Operation                    | Integer/bitwise equivalent                |
 | ---------------------------- | ----------------------------------------- |
-| `ceil(log2(n))`, for `n > 1` | `bit_length(n - 1)`                       |
+| `ceil(log2(n))`, `n > 1`     | `bit_length(n - 1)`                       |
 | `floor(n / 2)`               | `n >>> 1` in Java                         |
+| `floor(n / 2)`, `n >= 0`     | `n >>> 1` in Java, JavaScript, and TypeScript |
 | `ceil(n / 2)`                | `(n + 1) >>> 1` for non-negative integers |
 | `2 ^ n`                      | `1 << n`                                  |
 | `2 * ceil(n / 2)`            | `n + (n & 1)`                             |
 | `n * 2`                      | `n << 1`                                  | 
 | `uint32_be(n)`               | `[(n >> 24) & 0xFF, (n >> 16) & 0xFF, (n >> 8) & 0xFF, n & 0xFF]` |
 
-Here, `bit_length(x)` is the number of bits in the binary representation of `x`. e.g. in Java, it can be computed as `32 - Integer.numberOfLeadingZeros(x)` for positive `int` values.
+Here, `bit_length(n)` is the number of bits in the binary representation of `n`. For example, in Java, it can be computed as `32 - Integer.numberOfLeadingZeros(n)` for positive `int` values. Similarly, in JavaScript/TypeScript, `bit_length(n)` can be computed as `32 - Math.clz32(n)`.
 
 ### Implementations
 
