@@ -255,6 +255,8 @@ JSON datasets are structured as hierarchical collections of objects and arrays. 
 - Encode each claim as: `UTF8(JSONPointer) || 0x00 || JCS(value)` where `JSONPointer` follows [RFC6901], `UTF8` encodes the pointer as UTF-8, `0x00` is a separator, and JCS(value) is the JCS serialization of the corresponding JSON value, encoded as UTF-8.
 - Preserve a deterministic ordering of claims to ensure consistent commitment generation and verification.
 
+> Note: Disclosed JSON array elements for verification purposes are encoded as an object where keys are string representations of array indices and values are corresponding elements, maintaining consistent JSON pointer creation.
+
 #### Example
 
 Consider a JSON document containing three statements:
