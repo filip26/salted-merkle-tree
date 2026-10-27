@@ -303,7 +303,7 @@ mapping = [0, 2, 3, 1]
 
 Applying the root computation algorithm produces the following root hash:
 ```
-ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6
+07585040683ad2e371309555e10fd4588d2a12fef115ae0245d389fad6a17a7c
 ```
 
 The figure below shows the complete Merkle tree constructed by the issuer and holder using these salts and the resulting mapping.
@@ -324,11 +324,11 @@ salts = [
   "2e42d305c3888a55c992514a4b635f0739ceb3fe02584f522703df1551938091"
 ]
 path = [
-  "46d2beb76d8fd5d41daf290e037fec622fc83ecf677598c6c117095688a45ee1",
-  "b3a49a28389c75494f9760a4f8c5ca557c380818d5f4782972069f792384bf51"
+  "4db5b68674053cf56a458ad8bf27a8fc167cf0c5e6339d9e49924bcca5147e73",
+  "d5a2019d21cd72c15bc07ab7d960b45418fafe95737f17cfcd32b4b518438e36"
 ]
 indices = [0, 2]
-signature = Sig(root:"ffc7679ee3d4e7472b886e731b6c853d5384c4b1cbd191759cd31a497a3ac7d6")
+signature = Sig(root:"07585040683ad2e371309555e10fd4588d2a12fef115ae0245d389fad6a17a7c")
 ```
 
 The verifier uses the disclosed claims, their salts and indices, the verification path, and the issuer's signature to reconstruct the Merkle root and verify the claims' integrity and authenticity without revealing the remaining claims.
