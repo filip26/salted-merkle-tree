@@ -251,8 +251,8 @@ Verifiers should enforce configurable limits on the number of disclosed claims, 
 JSON datasets are structured as hierarchical collections of objects and arrays. The syntax follows the JSON Data Interchange Format [RFC8259], while deterministic serialization uses the JSON Canonicalization Scheme (JCS) [RFC8785]. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values [RFC6901], while canonicalization ensures deterministic encoding independent of superficial serialization differences.
 
 - Canonicalize the dataset using the JSON Canonicalization Scheme (JCS) [RFC8785].
-- Flatten the canonicalized JSON into an ordered sequence of claims, one per JSON value at a defined JSON Pointer.
-- Encode each claim as: `UTF8(JSONPointer) || 0x00 || JCS(value)` where `JSONPointer` follows [RFC6901], `UTF8` encodes the pointer as UTF-8, `0x00` is a separator, and `value` is the UTF-8 encoding of the value serialized according to JCS.
+- Flatten the canonicalized JSON into an ordered sequence of claims, with one claim for each JSON value identified by a defined JSON Pointer. Each JSON Pointer [RFC 6901]. Each claim's scalar value is serialized according to the JCS [RFC 8785].
+- Encode each claim as: `UTF8(JSONPointer) || 0x00 || JCS(value)` where `JSONPointer` follows [RFC6901], `UTF8` encodes the pointer as UTF-8, `0x00` is a separator, and JCS(value) is the JCS serialization of the corresponding JSON value, encoded as UTF-8.
 - Preserve a deterministic ordering of claims to ensure consistent commitment generation and verification.
 
 #### Example
