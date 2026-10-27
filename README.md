@@ -248,7 +248,7 @@ Verifiers should enforce configurable limits on the number of disclosed claims, 
 
 ### JSON Dataset
 
-JSON datasets are structured as hierarchical collections of objects and arrays. The syntax follows the JSON Data Interchange Format [RFC8259], while deterministic serialization uses the JSON Canonicalization Scheme (JCS) [RFC8785]. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values, while canonicalization ensures deterministic encoding independent of superficial serialization differences.
+JSON datasets are structured as hierarchical collections of objects and arrays. The syntax follows the JSON Data Interchange Format [RFC8259], while deterministic serialization uses the JSON Canonicalization Scheme (JCS) [RFC8785]. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values [RFC6901], while canonicalization ensures deterministic encoding independent of superficial serialization differences.
 
 - Canonicalize the dataset using the JSON Canonicalization Scheme (JCS) [RFC8785].
 - Flatten the canonicalized JSON into an ordered sequence of claims, one per JSON value at a defined JSON Pointer.
