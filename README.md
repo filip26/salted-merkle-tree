@@ -250,7 +250,7 @@ Verifiers should enforce configurable limits on the number of disclosed claims, 
 
 JSON datasets are structured as hierarchical collections of objects and arrays. The syntax follows the JSON Data Interchange Format [RFC8259], while deterministic serialization uses the JSON Canonicalization Scheme (JCS) [RFC8785]. Selective disclosure requires mapping this structure to independently committable claims while preserving each value's location and identity within the original document. JSON Pointers provide stable references to individual values [RFC6901], while canonicalization ensures deterministic encoding independent of superficial serialization differences.
 
-- Flatten the canonicalized JSON into an ordered sequence of claims, with one claim for each JSON value identified by a defined JSON Pointer. Each JSON Pointer [RFC 6901]. Each claim's scalar value is serialized according to the JCS [RFC 8785]. Sort the claims by JSON Pointer lexicographically.
+- Flatten the JSON into an ordered sequence of claims, with one claim for each JSON value identified by a defined JSON Pointer [RFC 6901]. Each claim's scalar value is serialized according to the JCS [RFC 8785]. Sort the claims by JSON Pointer lexicographically.
 - Encode each claim as: `UTF8(JSONPointer) || 0x00 || JCS(value)` where `JSONPointer` follows [RFC6901], `UTF8` encodes the pointer as UTF-8, `0x00` is a separator, and JCS(value) is the JCS serialization of the corresponding JSON value, encoded as UTF-8.
 - Preserve a deterministic ordering of claims to ensure consistent commitment generation and verification.
 
@@ -279,9 +279,9 @@ The flattening rule recursively traverses objects in order of the JCS canonicali
 For the example above, flattening produces three claims, each represented as a byte array:
 
 ```
-0: UTF8("/city") || 0x00 || UTF8("\"Prague\"")
-1: UTF8("/country") || 0x00 || UTF8("\"Czech Republic\"")
-2: UTF8("/name") || 0x00 || UTF8("\"Filip\"")
+0: UTF8(/city) || 0x00 || UTF8("Prague")
+1: UTF8(/country) || 0x00 || UTF8("Czech Republic")
+2: UTF8(/name) || 0x00 || UTF8("Filip")
 ```
 
 Using the following test HMAC secret key (hex-encoded):
