@@ -454,7 +454,8 @@ Here, `bit_length(n)` is the number of bits in the binary representation of `n`.
 
 ### Implementations
 
-[SaltedMerkleTree.java](https://github.com/filip26/iron-verifiable-credentials/blob/main/selective-disclosure/salted-merkle-tree/src/main/java/com/apicatalog/smt/SaltedMerkleTree.java)
+- [SaltedMerkleTree.java](https://github.com/filip26/iron-verifiable-credentials/blob/main/selective-disclosure/salted-merkle-tree/src/main/java/com/apicatalog/smt/SaltedMerkleTree.java)
+- [sd-merkle.js](https://github.com/filip26/sd-json-claims.js/blob/main/src/sd-merkle.js)
 
 ## License
 
